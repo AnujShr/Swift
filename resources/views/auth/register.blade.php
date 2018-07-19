@@ -1,77 +1,224 @@
-@extends('layouts.app')
+@extends('layouts.master')
+@section('page-content')
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+    <div class="fh5co-contact animate-box">
+        <div class="col-md-8 col-md-offset-2 col-md-push-1 animate-box">
+            <div class="container">
+                <div class="row">
+                   <div id="message"></div>
+                    <div class="container regs">
+                        <ul class="nav nav-tabs col-md-8 col-md-offset-2 ">
+                            <li id="reg-click" class="active"><a data-toggle="tab" href="#register">Register</a></li>
+                            <li id="log-click"><a data-toggle="tab" href="#login">Login</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div id="register" class="tab-pane fade in active ">
+                                <div class="col-md-8 animate-box">
+                                    <div id="form-section">
+                                        <form id="registerForm" method="POST" action="{{ route('register') }}"
+                                              aria-label="{{ __('Register') }}">
+                                            @csrf
+                                            <div class="form-group row">
+                                                <label for="name"
+                                                       class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+                                                <div class="col-md-6">
+                                                    <input id="name" type="text" class="form-control" name="name"
+                                                           value="{{ old('name') }}">
+                                                    <span class="error" role="alert"></span>
+                                                </div>
+                                            </div>
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}" aria-label="{{ __('Register') }}">
-                        @csrf
+                                            <div class="form-group row">
+                                                <label for="reg-email"
+                                                       class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                                                <div class="col-md-6">
+                                                    <input id="email" type="email"
+                                                           class="form-control"
+                                                           name="email"
+                                                           value="{{ old('email') }}">
+                                                    <span class="error" role="alert"></span>
+                                                </div>
+                                            </div>
 
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+                                            <div class="form-group row">
+                                                <label for="reg-password"
+                                                       class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
+                                                <div class="col-md-6">
+                                                    <input id="password" type="password"
+                                                           class="form-control"
+                                                           name="password">
+                                                    <span class="error" role="alert"><strong></strong>
+                                                        </span>
+                                                </div>
+                                            </div>
 
-                                @if ($errors->has('name'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
-                                @endif
+                                            <div class="form-group row">
+                                                <label for="password-confirm"
+                                                       class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+                                                <div class="col-md-6">
+                                                    <input id="password-confirm" type="password"
+                                                           class="form-control"
+                                                           name="password_confirmation">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="row">
+                                                    <div class="form-group row mb-0">
+                                                        <div class="col-md-6 offset-md-4">
+                                                            <button id="registerSubmit" type="submit"
+                                                                    class="btn btn-primary">
+                                                                {{ __('Register') }}
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="login" class="tab-pane">
+                                <div class="col-md-8 animate-box ">
+                                    <div id="f-height"></div>
+                                    <div id="form-section">
+                                        <form id="loginForm" method="POST" action="{{ route('login') }}"
+                                              aria-label="{{ __('Login') }}">
+                                            @csrf
+
+                                            <div class="form-group row">
+                                                <label for="log-email"
+                                                       class="col-sm-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+
+                                                <div class="col-md-6">
+                                                    <input id="log-email" type="email" class="form-control" name="email" value="{{ old('email') }}" autofocus>
+                                                    <span class="error" role="alert"></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label for="log-password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                                                <div class="col-md-6">
+                                                    <input id="log-password" type="password" class="form-control" name="password">
+                                                    <span class="error" role="alert"></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <div class="col-md-6 offset-md-4">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                                                        <label class="form-check-label" for="remember">
+                                                            {{ __('Remember Me') }}
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row mb-0">
+                                                <div class="col-md-8 offset-md-4">
+                                                    <button type="submit" class="btn btn-primary">
+                                                        {{ __('Login') }}
+                                                    </button>
+
+                                                    <a class="btn btn-link" href="{{ route('password.request') }}">
+                                                        {{ __('Forgot Your Password?') }}
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
-
-                                @if ($errors->has('email'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+    <script>
+        $('#reg-click').click(function (e) {
+            $('#log-click').removeClass('active');
+            $('#reg-click').addClass('active');
+        });
+        $('#log-click').click(function (e) {
+            $('#reg-click').removeClass('active');
+            $('#log-click').addClass('active');
+        });
+
+        /*
+        * Register Form Request
+        * */
+        let registerForm = $('#registerForm');
+
+        registerForm.submit(function (e) {
+            let data = registerForm.serialize();
+            e.preventDefault();
+            removeErrors(registerForm);
+            $.ajax({
+                url: '/register',
+                type: 'post',
+                data: data,
+                datatye: 'json',
+                success: function (response) {
+
+                },
+                error: function (errors) {
+                    $.each(errors.responseJSON.errors, function (key, value) {
+                        key = $('#' + key);
+                        key.parent('div').addClass('has-error');
+                        key.next('span').html(value[0]);
+                        key.next('span').addClass('help-block');
+                    });
+                }
+            });
+        });
+
+        /*
+       * Login Form Request
+       * */
+
+        let loginForm = $('#loginForm');
+        loginForm.submit(function (e) {
+            e.preventDefault();
+            removeErrors(loginForm);
+            let loginData = loginForm.serialize();
+            $.ajax({
+                url: '/login',
+                type: 'post',
+                data: loginData,
+                datatye: 'json',
+                success: function (response) {
+                    window.location.href = "/";
+                },
+                error: function (errors) {
+                    $.each(errors.responseJSON.errors, function (key, value) {
+                        if (key == "email") {
+                            key = $('#log-email');
+                            key.parent('div').addClass('has-error');
+                            key.next('span').html(value[0]);
+                            key.next('span').addClass('help-block');
+                        }
+                        if(key == 'password'){
+                            key = $('#log-password');
+                            key.parent('div').addClass('has-error');
+                            key.next('span').html(value[0]);
+                            key.next('span').addClass('help-block');
+                        }
+                    });
+                }
+            });
+        });
+
+        function removeErrors(input) {
+            input.find('div').removeClass('has-error');
+            input.find('span').html('');
+            input.find('span').removeClass('help-block');
+        }
+
+    </script>
+
 @endsection
+
+
+

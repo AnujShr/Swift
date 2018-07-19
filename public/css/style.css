@@ -85,21 +85,21 @@ h1, h2, h3, h4, h5, h6, figure {
 }
 
 .btn-primary {
-  background: #27E1CE;
+  background: #00b1b3;
   color: #fff;
   border: 2px solid #27E1CE;
 }
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active {
-  background: #3de4d3 !important;
-  border-color: #3de4d3 !important;
+  background: #00b1b3 !important;
+  border-color:#00b1b3!important;
 }
 .btn-primary.btn-outline {
   background: transparent;
-  color: #27E1CE;
+  color: #00b1b3;
   border: 2px solid #27E1CE;
 }
 .btn-primary.btn-outline:hover, .btn-primary.btn-outline:focus, .btn-primary.btn-outline:active {
-  background: #27E1CE;
+  background: #00b1b3;
   color: #fff;
 }
 
@@ -1221,5 +1221,9 @@ h1, h2, h3, h4, h5, h6, figure {
 .js .animate-box {
   opacity: 0;
 }
+#form-section {
+  padding: 2em 0;
+}
+
 
 /*# sourceMappingURL=style.css.map */
