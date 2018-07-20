@@ -162,6 +162,7 @@
         let registerForm = $('#registerForm');
 
         registerForm.submit(function (e) {
+            let width = $('#form-section').width();
             let data = registerForm.serialize();
             e.preventDefault();
             removeErrors(registerForm);
