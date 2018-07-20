@@ -62,7 +62,7 @@ class LoginController extends Controller
     protected function sendFailedLoginResponse(Request $request)
     {
         throw ValidationException::withMessages([
-            $this->username() => [trans('Account not activated')],
+            $this->username() => [trans('auth.failed')],
         ]);
     }
 }

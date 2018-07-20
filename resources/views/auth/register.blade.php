@@ -171,7 +171,7 @@
                 data: data,
                 datatye: 'json',
                 success: function (response) {
-                    var  message ='<div style="width:'+width+'px" class="alert alert-success alert-dismissable" id="message">' +
+                    let  message ='<div style="width:'+width+'px" class="alert alert-success" id="message">' +
                         '<strong>Register Sucessfull!</strong> ' +
                         'Please Check Your Email For the Validation Link.' +
                         '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
@@ -181,10 +181,7 @@
                     $('#message').html(message);
                 },
                 error: function (errors) {
-                    var width = $('#form-section').width();
-                    console.log(width);
-
-                  var  message ='<div style="width:'+width+'px" class="alert alert-danger alert-dismissable" id="message">' +
+                  let  message ='<div style="width:'+width+'px" class="alert alert-danger" id="message">' +
                       '<strong>Error Encounter!</strong> ' +
                       'You should check in on some of those fields below.' +
                       '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
@@ -221,13 +218,13 @@
                 },
                 error: function (errors) {
                     $.each(errors.responseJSON.errors, function (key, value) {
-                        if (key == "email") {
+                        if (key === "email") {
                             key = $('#log-email');
                             key.parent('div').addClass('has-error');
                             key.next('span').html(value[0]);
                             key.next('span').addClass('help-block');
                         }
-                        if(key == 'password'){
+                        if(key === 'password'){
                             key = $('#log-password');
                             key.parent('div').addClass('has-error');
                             key.next('span').html(value[0]);

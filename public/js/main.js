@@ -216,7 +216,7 @@
 		fullHeight();
 		sliderMain();
 		centerBlock();
-		responseHeight()
+		responseHeight();
 		mobileMenuOutsideClick();
 		offcanvasMenu();
 		burgerMenu();

@@ -96,5 +96,7 @@ class RegisterController extends Controller
     protected function registered(Request $request, $user)
     {
         app('mailer')->queue(new ValidationEmail($user));
+        $return['success'] = true;
+        return response()->json($return);
     }
 }
