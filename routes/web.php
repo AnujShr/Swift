@@ -32,4 +32,5 @@ Route::get('/contact', function () {
     return view('front/contact');
 })->name('contact');
 
-Route::post('/contact','ContactController@store');
+Route::post('/contact', 'ContactController@store');
+Route::get('/register/confirm', 'Auth\RegisterConfirmationController@index')->name('register.confirm');

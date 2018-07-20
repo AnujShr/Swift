@@ -5,6 +5,16 @@
         <div class="col-md-8 col-md-offset-2 col-md-push-1 animate-box">
             <div class="container">
                 <div class="row">
+                    @if(Session::has('error'))
+                        <div class="alert alert-danger alert-dismissable" id="message">
+                            <strong>Validation Failed!</strong>
+                            Please Check if your Account is already acitvate.
+                            If not please contact site support <a href="{{route('contact')}}">Support</a>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        @endif
                    <div id="message"></div>
                     <div class="container regs">
                         <ul class="nav nav-tabs col-md-8 col-md-offset-2 ">
@@ -161,9 +171,27 @@
                 data: data,
                 datatye: 'json',
                 success: function (response) {
-
+                    var  message ='<div style="width:'+width+'px" class="alert alert-success alert-dismissable" id="message">' +
+                        '<strong>Register Sucessfull!</strong> ' +
+                        'Please Check Your Email For the Validation Link.' +
+                        '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
+                        '<span aria-hidden="true">&times;</span>' +
+                        '</button>' +
+                        '</div>';
+                    $('#message').html(message);
                 },
                 error: function (errors) {
+                    var width = $('#form-section').width();
+                    console.log(width);
+
+                  var  message ='<div style="width:'+width+'px" class="alert alert-danger alert-dismissable" id="message">' +
+                      '<strong>Error Encounter!</strong> ' +
+                      'You should check in on some of those fields below.' +
+                      '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
+                      '<span aria-hidden="true">&times;</span>' +
+                      '</button>' +
+                      '</div>';
+                    $('#message').html(message);
                     $.each(errors.responseJSON.errors, function (key, value) {
                         key = $('#' + key);
                         key.parent('div').addClass('has-error');

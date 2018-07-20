@@ -11,8 +11,8 @@ class ContactController extends Controller
     public function store(ContactFormRequest $request)
     {
         $data = $request->all();
-        app('mailer')->queue(new ContactMail($data['email']));
         Contact::create($data);
+        app('mailer')->queue(new ContactMail($data));
         $return['success'] = 'true';
         return response()->json($return);
     }

@@ -6,7 +6,11 @@ Thank You for reaching out to Us.
 We will be contacting you soon for futher response.
 
 The conent of your inquiry is as:
-{{$message}}
+<br>
+<div class="panel panel-default">
+    <div class="panel-body">{{$message}}</div>
+</div>
+
 
 @component('mail::button', ['url' => 'study.loc/contact'])
 Contact
