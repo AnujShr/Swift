@@ -9,7 +9,11 @@
                     <li class="{{ Request::is('pricing') ? 'active' : '' }}"><a href="{{route('pricing')}}">Pricing</a></li>
                     <li class="{{ Request::is('about') ? 'active' : '' }}"><a href="{{route('about')}}">About</a></li>
                     <li class="{{ Request::is('contact') ? 'active' : '' }}"><a href="{{route('contact')}}">Contact</a></li>
-                    <li class="cta"><a href="{{route('register')}}">Get started</a></li>
+                    @if(!Auth::check())
+                        <li class="cta"><a href="{{route('register')}}">Sign Up/Sign In</a></li>
+                    @else
+                        <li class="cta"><a href="{{route('home')}}"> Profile</a></li>
+                    @endif
                 </ul>
             </nav>
         </div>

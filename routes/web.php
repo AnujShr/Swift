@@ -12,10 +12,11 @@
 */
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', function () {
     return view('front/home');
 })->name('home');
+
+Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/about', function () {
     return view('front/about');
 })->name('about');
@@ -31,6 +32,7 @@ Route::get('/pricing', function () {
 Route::get('/contact', function () {
     return view('front/contact');
 })->name('contact');
+Route::get('/home', 'HomeController@index')->name('home');
 
 Route::post('/contact', 'ContactController@store');
 Route::get('/register/confirm', 'Auth\RegisterConfirmationController@index')->name('register.confirm');

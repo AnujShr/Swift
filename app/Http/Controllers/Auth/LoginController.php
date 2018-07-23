@@ -3,12 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Illuminate\Foundation\Auth\RedirectsUsers;
-use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Validator;
 
 class LoginController extends Controller
 {
@@ -30,7 +29,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -42,27 +41,71 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    protected function attemptLogin(Request $request)
+    public function authenticate(Request $request){
+
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+
+        $email = $request->input('email');
+        $password = $request->input('password');
+        if (Auth::attempt(['email' => $email, 'password' => $password,'type'=>'admin'])) {
+
+            // Authentication passed...
+            return redirect()->intended('/admin');
+        } else {
+
+            return redirect()->back()->with('error-message', 'Username or password didn\'t matched.');
+        }
+
+    }
+    public function showLoginForm()
     {
-        return Auth::attempt(
-            $this->credentials($request) + ["confirmed" => true],
-            $request->filled('remember')
-        );
+        return view('auth.register');
+    }
+    public function login(Request $request)
+    {
+        $validation=Validator::make($request->all(),[
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        if ($validation->fails())  {
+            return response()->json($validation->errors()->toArray(), 422);
+        }
+
+        $email = $request->input('email');
+        $password = $request->input('password');
+
+        $user_exist=User::where('email',$email)->first();
+        if(!$user_exist){
+            $data['email']='Account doesn\'t exist.';
+            return response()->json($data, 422);
+        }
+
+        $user = User::query()->where(['email'=>$email])->where('confirmed', 1)->first();
+        if(!$user){
+            $data['email']='Account not activated. Please check your email for the activation link.';
+            return response()->json($data, 422);
+        }
+
+        if (Auth::attempt(['email' => $email, 'password' => $password,'confirmed'=>1])) {
+                $data['success']=true;
+                $data['redirect']=$this->redirectTo;
+                return response()->json($data,200);
+
+        }else{
+            $data['email']='Credentials didn\'t match our records.';
+            return response()->json($data, 422);
+        }
     }
 
-    /**
-     * Get the failed login response instance.
-     * NOTE: this override DO NOT uses at all the trait version
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Symfony\Component\HttpFoundation\Response
-     *
-     * @throws ValidationException
-     */
-    protected function sendFailedLoginResponse(Request $request)
-    {
-        throw ValidationException::withMessages([
-            $this->username() => [trans('auth.failed')],
-        ]);
+    public function logout() {
+        // $user_type=Auth::user()->type;
+        Auth::logout();
+        return redirect('/');
     }
+
 }

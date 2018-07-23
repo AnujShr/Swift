@@ -218,19 +218,12 @@
                     window.location.href = "/";
                 },
                 error: function (errors) {
-                    $.each(errors.responseJSON.errors, function (key, value) {
-                        if (key === "email") {
-                            key = $('#log-email');
-                            key.parent('div').addClass('has-error');
-                            key.next('span').html(value[0]);
-                            key.next('span').addClass('help-block');
-                        }
-                        if(key === 'password'){
-                            key = $('#log-password');
-                            key.parent('div').addClass('has-error');
-                            key.next('span').html(value[0]);
-                            key.next('span').addClass('help-block');
-                        }
+                    $.each($.parseJSON(errors.responseText), function (key, value) {
+                        key = $('#log-'+key);
+                        key.parent('div').addClass('has-error');
+                        key.next('span').html(value);
+                        key.next('span').addClass('help-block');
+
                     });
                 }
             });
