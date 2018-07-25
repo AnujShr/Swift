@@ -12,7 +12,7 @@
                     @if(!Auth::check())
                         <li class="cta"><a href="{{route('register')}}">Sign Up/Sign In</a></li>
                     @else
-                        <li class="cta"><a href="{{route('home')}}"> Profile</a></li>
+                        <li class="cta"><a href="{{(Auth::user()->role_id == 1)?route('admin'):route('home')}}"> Profile</a></li>
                     @endif
                 </ul>
             </nav>

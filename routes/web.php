@@ -36,8 +36,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::post('/contact', 'Contac1tController@store');
 Route::get('/register/confirm', 'Auth\RegisterConfirmationController@index')->name('register.confirm');
+Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
 
-
-Route::get('/admin',function (){
-    return view('admin.master');
+Route::group(['middleware'=>['auth','admin'],'prefix'=>'admin'],function(){
+    Route::get('/', function () {
+        return view('admin.dasboard.index');
+    })->name('admin');
 });
