@@ -2,9 +2,9 @@
 @section('page-content')
 
     <div class="fh5co-contact animate-box">
-        <div class="col-md-8 col-md-offset-2 col-md-push-1 animate-box">
-            <div class="container">
-                <div class="row">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2 col-md-push-1 animate-box">
                     @if(Session::has('error'))
                         <div class="alert alert-danger alert-dismissable" id="message">
                             <strong>Validation Failed!</strong>
@@ -12,10 +12,10 @@
                             If not please contact site support <a href="{{route('contact')}}">Support</a>
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                        @endif
-                   <div id="message"></div>
+                            </button>
+                        </div>
+                    @endif
+                    <div id="message"></div>
                     <div class="container regs">
                         <ul class="nav nav-tabs col-md-8 col-md-offset-2 ">
                             <li id="reg-click" class="active"><a data-toggle="tab" href="#register">Register</a></li>
@@ -101,15 +101,18 @@
                                                        class="col-sm-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                                                 <div class="col-md-6">
-                                                    <input id="log-email" type="email" class="form-control" name="email" value="{{ old('email') }}" autofocus>
+                                                    <input id="log-email" type="email" class="form-control" name="email"
+                                                           value="{{ old('email') }}" autofocus>
                                                     <span class="error" role="alert"></span>
                                                 </div>
                                             </div>
 
                                             <div class="form-group row">
-                                                <label for="log-password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                                                <label for="log-password"
+                                                       class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
                                                 <div class="col-md-6">
-                                                    <input id="log-password" type="password" class="form-control" name="password">
+                                                    <input id="log-password" type="password" class="form-control"
+                                                           name="password">
                                                     <span class="error" role="alert"></span>
                                                 </div>
                                             </div>
@@ -117,7 +120,8 @@
                                             <div class="form-group row">
                                                 <div class="col-md-6 offset-md-4">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                                                        <input class="form-check-input" type="checkbox" name="remember"
+                                                               id="remember" {{ old('remember') ? 'checked' : '' }}>
                                                         <label class="form-check-label" for="remember">
                                                             {{ __('Remember Me') }}
                                                         </label>
@@ -172,7 +176,7 @@
                 data: data,
                 datatye: 'json',
                 success: function (response) {
-                    let  message ='<div style="width:'+width+'px" class="alert alert-success" id="message">' +
+                    let message = '<div style="width:' + width + 'px" class="alert alert-success" id="message">' +
                         '<strong>Register Sucessfull!</strong> ' +
                         'Please Check Your Email For the Validation Link.' +
                         '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
@@ -182,13 +186,13 @@
                     $('#message').html(message);
                 },
                 error: function (errors) {
-                  let  message ='<div style="width:'+width+'px" class="alert alert-danger" id="message">' +
-                      '<strong>Error Encounter!</strong> ' +
-                      'You should check in on some of those fields below.' +
-                      '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
-                      '<span aria-hidden="true">&times;</span>' +
-                      '</button>' +
-                      '</div>';
+                    let message = '<div style="width:' + width + 'px" class="alert alert-danger" id="message">' +
+                        '<strong>Error Encounter!</strong> ' +
+                        'You should check in on some of those fields below.' +
+                        '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
+                        '<span aria-hidden="true">&times;</span>' +
+                        '</button>' +
+                        '</div>';
                     $('#message').html(message);
                     $.each(errors.responseJSON.errors, function (key, value) {
                         key = $('#' + key);
@@ -219,7 +223,7 @@
                 },
                 error: function (errors) {
                     $.each($.parseJSON(errors.responseText), function (key, value) {
-                        key = $('#log-'+key);
+                        key = $('#log-' + key);
                         key.parent('div').addClass('has-error');
                         key.next('span').html(value);
                         key.next('span').addClass('help-block');

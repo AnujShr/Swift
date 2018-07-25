@@ -34,5 +34,10 @@ Route::get('/contact', function () {
 })->name('contact');
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::post('/contact', 'ContactController@store');
+Route::post('/contact', 'Contac1tController@store');
 Route::get('/register/confirm', 'Auth\RegisterConfirmationController@index')->name('register.confirm');
+
+
+Route::get('/admin',function (){
+    return view('admin.master');
+});

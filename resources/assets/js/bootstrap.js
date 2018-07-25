@@ -14,6 +14,7 @@ try {
     require('bootstrap');
 } catch (e) {}
 
+require('admin-lte');
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
  * to our Laravel back-end. This library automatically handles sending the
@@ -38,7 +39,16 @@ if (token) {
     console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
 
+$(document).on('click', '.sidebar-toggle', function () {
 
+    if ($('body').hasClass("sidebar-collapse")) {
+        $('body').addClass("sidebar-collapse");
+    }
+    else {
+        $('body').removeClass("sidebar-collapse");
+    }
+
+});
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening

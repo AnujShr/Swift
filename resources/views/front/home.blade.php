@@ -373,14 +373,9 @@
         <div class="container">
             <div class="col-md-12 text-center animate-box">
                 <h3>We Try To Update The Site Everyday</h3>
-                <p><a href="#" class="btn btn-primary btn-outline with-arrow">Get started now! <i
+                <p><a href="{{route('register')}}" class="btn btn-primary btn-outline with-arrow">Get started now! <i
                                 class="icon-arrow-right"></i></a></p>
             </div>
         </div>
     </div>
-
-
-
-
-
 @endsection
