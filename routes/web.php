@@ -45,9 +45,6 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin','namespace'
     Route::get('/', function () {
         return view('admin.dasboard.index');
     })->name('admin');
-    Route::get('/profile', function () {
-        return view('admin.profile.index');
-    })->name('admin');
     Route::get('profile','ProfileController@index')->name('admin.profile');
     Route::post('profile','ProfileController@update');
     Route::post('confirm-password','ProfileController@confirmPassword');

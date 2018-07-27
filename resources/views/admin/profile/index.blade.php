@@ -7,7 +7,7 @@
             <small>Control panel</small>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="{{route('admin')}}"><i class="fa fa-dashboard"></i> Home</a></li>
             <li class="active">Profile</li>
         </ol>
     </section>
@@ -68,6 +68,7 @@
     <!-- /.row -->
         <script>
 
+
             $('#password-change').click(function (e) {
                 e.preventDefault();
                 $('#change-password').modal();
@@ -88,7 +89,7 @@
                     data: $('#confirm-password').serialize(),
                     type: 'post',
                     dataType: 'json',
-                    success: function (response) {
+                    success: function () {
                         saveProfile();
                     },
                     error: function (errors) {
@@ -111,7 +112,7 @@
                     data: $(this).serialize(),
                     type: 'post',
                     dataType: 'json',
-                    success: function (response) {
+                    success: function () {
                         location.reload()
                     },
                     error: function (errors) {
@@ -132,7 +133,7 @@
                     data: $('#admin-profile-form').serialize(),
                     type: 'post',
                     dataType: 'json',
-                    success: function (response) {
+                    success: function () {
                         location.reload(true);
                     },
                     error: function (errors) {
