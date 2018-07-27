@@ -4,14 +4,16 @@
             <h1><a href="{{route('home')}}">Flew</a></h1>
             <nav role="navigation">
                 <ul>
-                    <li><a href="/">Home</a></li>
+                    <li class="{{ Request::is('/') ? 'active' : '' }}"><a href="/">Home</a></li>
                     <li class="{{ Request::is('about') ? 'active' : '' }}"><a href="{{route('about')}}">About</a></li>
                     {{--<li class="{{ Request::is('project') ? 'active' : '' }}"><a href="{{route('work')}}">Work</a></li>--}}
-                    <li class="{{ Request::is('contact') ? 'active' : '' }}"><a href="{{route('contact')}}">Contact</a></li>
+                    <li class="{{ Request::is('contact') ? 'active' : '' }}"><a href="{{route('contact')}}">Contact</a>
+                    </li>
                     @if(!Auth::check())
                         <li class="cta"><a href="{{route('register')}}">Sign Up/Sign In</a></li>
                     @else
-                        <li class="cta"><a href="{{(Auth::user()->role_id == 1)?route('admin'):route('home')}}"> Profile</a></li>
+                        <li class="cta"><a href="{{(Auth::user()->role_id == 1)?route('admin'):route('home')}}">
+                                Profile</a></li>
                     @endif
                 </ul>
             </nav>

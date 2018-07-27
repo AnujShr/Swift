@@ -1,5 +1,5 @@
 @extends('admin.master')
-@section('content')
+@section('page-content')
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>

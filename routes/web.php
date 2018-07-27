@@ -14,7 +14,7 @@ Auth::routes();
 
 Route::get('/', function () {
     return view('front/home');
-})->name('home');
+})->name('/');
 
 Route::get('/about', function () {
     return view('front/about');
@@ -41,9 +41,16 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/home', 'HomeController@index')->name('home');
 });
 
-Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin'], function () {
+Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin','namespace'=>'Admin'], function () {
     Route::get('/', function () {
         return view('admin.dasboard.index');
     })->name('admin');
+    Route::get('/profile', function () {
+        return view('admin.profile.index');
+    })->name('admin');
+    Route::get('profile','ProfileController@index')->name('admin.profile');
+    Route::post('profile','ProfileController@update');
+    Route::post('confirm-password','ProfileController@confirmPassword');
+    Route::post('change-password','ProfileController@changePassword');
 });
 
