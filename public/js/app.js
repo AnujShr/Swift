@@ -13691,8 +13691,8 @@ module.exports = __webpack_require__(37);
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-__webpack_require__(12);
 window.$ = window.jQuery = __webpack_require__(1);
+__webpack_require__(12);
 
 // window.Vue = require('vue');
 
@@ -13723,9 +13723,9 @@ window.Popper = __webpack_require__(4).default;
  */
 
 try {
-    window.$ = window.jQuery = __webpack_require__(1);
+  window.$ = window.jQuery = __webpack_require__(1);
 
-    __webpack_require__(15);
+  __webpack_require__(15);
 } catch (e) {}
 
 __webpack_require__(16);
@@ -13748,19 +13748,10 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 var token = document.head.querySelector('meta[name="csrf-token"]');
 
 if (token) {
-    window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+  window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
 } else {
-    console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+  console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
-
-$(document).on('click', '.sidebar-toggle', function () {
-
-    if ($('body').hasClass("sidebar-collapse")) {
-        $('body').addClass("sidebar-collapse");
-    } else {
-        $('body').removeClass("sidebar-collapse");
-    }
-});
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening

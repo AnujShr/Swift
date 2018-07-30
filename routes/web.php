@@ -49,5 +49,6 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin','namespace'
     Route::post('profile','ProfileController@update');
     Route::post('confirm-password','ProfileController@confirmPassword');
     Route::post('change-password','ProfileController@changePassword');
+    Route::post('profile-picture','ProfileController@uploadProfilePicture')->name('admin.profile.picture');
 });
 

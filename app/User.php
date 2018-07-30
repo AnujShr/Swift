@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable
 {
     use Notifiable;
+    const ADMIN_IMAGE_PATH= 'public/admin/';
 
     /**
      * The attributes that are mass assignable.
@@ -15,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','confirmation_token', 'confirmed','skill'
+        'name', 'email', 'password','confirmation_token', 'confirmed','skill','profile_picture'
     ];
 
     /**

@@ -6774,5 +6774,8 @@ table.text-center th {
     border-left: 1px solid #d2d6de;
   }
 }
-
+.profile-preview{
+    margin: 15px;
+    width: 125px;
+}
 

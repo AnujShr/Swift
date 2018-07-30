@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Jobs\ResizeImage;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Intervention\Image\Facades\Image;
 
 class ProfileController extends Controller
 {
@@ -88,5 +91,28 @@ class ProfileController extends Controller
         $user->save();
         $return['success'] = true;
         return response()->json($return);
+    }
+
+    public function uploadProfilePicture(Request $request)
+    {
+        $this->validate($request, [
+            'profile_picture' => 'image|required|mimes:jpeg,png,jpg,gif,svg'
+        ]);
+        $file = $request->file('profile_picture');
+        $unique = uniqid();
+        $basePath = User::ADMIN_IMAGE_PATH;
+
+
+        $fileName = $unique . '.' . $file->getClientOriginalExtension();
+
+        $filePath = Storage::putFileAs($basePath . '/', $file, $fileName);
+
+
+        $this->dispatch(new ResizeImage($filePath));
+        $user = User::query()->find(Auth::id());
+        $user->profile_picture = $fileName;
+        $user->save();
+
+        return back()->with('success', 'Your images has been successfully Upload');
     }
 }

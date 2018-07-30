@@ -39,16 +39,7 @@ if (token) {
     console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
 
-$(document).on('click', '.sidebar-toggle', function () {
 
-    if ($('body').hasClass("sidebar-collapse")) {
-        $('body').addClass("sidebar-collapse");
-    }
-    else {
-        $('body').removeClass("sidebar-collapse");
-    }
-
-});
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening

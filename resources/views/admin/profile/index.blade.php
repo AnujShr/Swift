@@ -48,6 +48,16 @@
                         {!! Form::label('password','Change Password',['class'=>'col-sm-2 control-label']) !!}
 
                         <div class="col-sm-3">
+                            <button class="btn btn-default btn-block btn bg-blue margin" id="change-profile-pic">Change
+                                Profile Picture
+                            </button>
+                            <span class="error"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {!! Form::label('password','Change Password',['class'=>'col-sm-2 control-label']) !!}
+
+                        <div class="col-sm-3">
                             <button class="btn btn-default btn-block btn bg-maroon margin" id="password-change">Change
                                 Password
                             </button>
@@ -65,13 +75,30 @@
         </div>
     @include('admin.profile._partials.password_confirmation')
     @include('admin.profile._partials.change_password')
+    @include('admin.profile._partials.profile_picture')
     <!-- /.row -->
         <script>
-
+            function readURL(input) {
+                if (input.files && input.files[0]) {
+                    let reader = new FileReader();
+                    reader.onload = function (e) {
+                        $('#profile-img-tag').attr('src', e.target.result);
+                    };
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+            $("#profile_picture").change(function(){
+                readURL(this);
+            });
 
             $('#password-change').click(function (e) {
                 e.preventDefault();
                 $('#change-password').modal();
+
+            });
+            $('#change-profile-pic').click(function (e) {
+                e.preventDefault();
+                $('#profile-picture').modal();
 
             });
             $('#admin-profile-form').submit(function (e) {
@@ -152,6 +179,8 @@
                 input.find('span').html('');
                 input.find('span').removeClass('help-block');
             }
+
+
         </script>
     </section>
 @endsection
