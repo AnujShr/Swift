@@ -73,6 +73,9 @@ class LoginController extends Controller
         }
 
         if (Auth::attempt(['email' => $email, 'password' => $password, 'confirmed' => 1])) {
+            if ($user->role_id == 1) {
+                $this->redirectTo = '/admin';
+            }
             $data['success'] = true;
             $data['redirect'] = $this->redirectTo;
             return response()->json($data, 200);

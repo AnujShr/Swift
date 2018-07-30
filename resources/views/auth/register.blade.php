@@ -219,7 +219,7 @@
                 data: loginData,
                 datatye: 'json',
                 success: function (response) {
-                    window.location.href = "/";
+                    window.location.href =response['redirect'];
                 },
                 error: function (errors) {
                     $.each($.parseJSON(errors.responseText), function (key, value) {
