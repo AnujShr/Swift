@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Jobs\ResizeImage;
 use App\User;
+use App\UserImage;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -17,8 +18,9 @@ class ProfileController extends Controller
     public function index()
     {
         $id = Auth::id();
-        $user = User::query()->where('id', $id)->first();
-        return view('admin.profile.index', compact('user'));
+        $user = User::query()->where('id', $id)->with('oldPictures')->first();
+        $basePath = User::ADMIN_IMAGE_PATH;
+        return view('admin.profile.index', compact('user', 'basePath'));
     }
 
     public function update(Request $request)
@@ -95,24 +97,55 @@ class ProfileController extends Controller
 
     public function uploadProfilePicture(Request $request)
     {
-        $this->validate($request, [
-            'profile_picture' => 'image|required|mimes:jpeg,png,jpg,gif,svg'
-        ]);
-        $file = $request->file('profile_picture');
-        $unique = uniqid();
-        $basePath = User::ADMIN_IMAGE_PATH;
-
-
-        $fileName = $unique . '.' . $file->getClientOriginalExtension();
-
-        $filePath = Storage::putFileAs($basePath . '/', $file, $fileName);
-
-
-        $this->dispatch(new ResizeImage($filePath));
+        $data = $request->all();
         $user = User::query()->find(Auth::id());
-        $user->profile_picture = $fileName;
-        $user->save();
+        if (isset($data['profile_picture']) && $data['profile_picture'] != '') {
+            $rules = [
+                'profile_picture' => 'image|required|mimes:jpeg,png,jpg,gif,svg'
+            ];
+            $this->validate($request, $rules);
+            $file = $request->file('profile_picture');
+            $unique = uniqid();
+            $basePath = User::ADMIN_IMAGE_PATH;
 
+
+            $fileName = $unique . '.' . $file->getClientOriginalExtension();
+
+            $filePath = Storage::putFileAs($basePath . '/', $file, $fileName);
+
+
+            $this->dispatch(new ResizeImage($filePath));
+            UserImage::create([
+                'user_id' => Auth::id(),
+                'profile_picture' => $fileName
+            ]);
+        } else {
+            $fileName = $data['oldPicture'];
+        }
+        ;
+        if ($fileName != '') {
+            $user->profile_picture = $fileName;
+            $user->save();
+        }
         return back()->with('success', 'Your images has been successfully Upload');
+    }
+
+    public function deleteProfilePicture(Request $request)
+    {
+        $data = $request->all();
+        $basePath = User::ADMIN_IMAGE_PATH;
+        $fileName = $data['oldPicture'];
+        dd($data);
+        if ($fileName) {
+            $img = explode('.', $fileName);
+            foreach (\Config::get('image_size.admin.profile_picture') as $type => $dimension) {
+
+                Storage::delete($basePath . '/' . $img[0] . '-' . $type . '.' . $img[1]);
+            }
+            Storage::delete($basePath . '/' . $fileName);
+            UserImage::query()->where('profile_picture', $fileName)->delete();
+        }
+        $return['success'] = 'true';
+        return response()->json($return);
     }
 }

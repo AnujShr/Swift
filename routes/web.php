@@ -16,6 +16,10 @@ Route::get('/', function () {
     return view('front/home');
 })->name('/');
 
+Route::get('/up', function () {
+    return view('admin/profile/fine-uploader');
+})->name('/up');
+
 Route::get('/about', function () {
     return view('front/about');
 })->name('about');
@@ -50,5 +54,7 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin','namespace'
     Route::post('confirm-password','ProfileController@confirmPassword');
     Route::post('change-password','ProfileController@changePassword');
     Route::post('profile-picture','ProfileController@uploadProfilePicture')->name('admin.profile.picture');
+    Route::post('delete-profile-picture','ProfileController@deleteProfilePicture')->name('admin.profile.delete');
 });
+
 

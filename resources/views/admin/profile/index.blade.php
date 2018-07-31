@@ -87,7 +87,9 @@
                     reader.readAsDataURL(input.files[0]);
                 }
             }
-            $("#profile_picture").change(function(){
+
+            $("#profile_picture").change(function () {
+                $('#profile-img-tag').show();
                 readURL(this);
             });
 
@@ -179,6 +181,23 @@
                 input.find('span').html('');
                 input.find('span').removeClass('help-block');
             }
+
+
+            $("#removeBtn").click(function (e) {
+                let chk = $('.gallery-section input:radio:checked');
+                let value =chk.attr('value');
+                e.preventDefault();
+                $.ajax({
+                    url: '/admin/delete-profile-picture',
+                    data: value,
+                    type: 'post',
+                    dataType: 'json',
+                    success: function () {
+
+                    }
+                });
+            });
+
 
 
         </script>
