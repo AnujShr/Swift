@@ -78,35 +78,48 @@
 
 
     <script>
-        $(window).on('hashchange', function () {
+        $(window).on('hashchange', function() {
             if (window.location.hash) {
                 var page = window.location.hash.replace('#', '');
-                if (page == Number.NaN || page <= 0) {
+                if (page === Number.NaN || page <= 0) {
                     return false;
-                } else {
-                    getPosts(page);
+                }else{
+                    getData(page);
                 }
             }
         });
-        $(document).ready(function () {
-            $(document).on('click', '.pagination a', function (e) {
-                getPosts($(this).attr('href').split('page=')[1]);
-                e.preventDefault();
-            });
-        });
 
-        function getPosts(page) {
-            $.ajax({
-                url: '?page=' + page,
-                dataType: 'json',
-            }).done(function (data) {
-                let view = data;
-                $('.tables').html($(view).find('.tables').html());
-                location.hash = page;
-            }).fail(function () {
-                alert('Posts could not be loaded.');
+
+            $(document).on('click', '.pagination a',function(event)
+            {
+                $('li').removeClass('active');
+                $(this).parent('li').addClass('active');
+                event.preventDefault();
+                var myurl = $(this).attr('href');
+                var page=$(this).attr('href').split('page=')[1];
+                getData(page);
+                window.history.pushState("", "", myurl);
             });
+
+
+
+        function getData(page){
+            $.ajax(
+                {
+                    url: '?page=' + page,
+                    type: "get",
+                    datatype: "html",
+                })
+                .done(function(data)
+                {
+                    $('.tables').html($(data).find('.tables').html());
+                })
+                .fail(function(jqXHR, ajaxOptions, thrownError)
+                {
+                    alert('No response from server');
+                });
         }
+
     </script>
     </div>
 @endsection
