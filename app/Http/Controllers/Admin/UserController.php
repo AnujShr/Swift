@@ -8,9 +8,18 @@ use App\Http\Controllers\Controller;
 
 class UserController extends Controller
 {
-    public function index()
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Throwable
+     */
+    public function index(Request $request)
     {
-        $users = User::query()->where('role_Id', '0')->get();
+        $users = User::query()->where('role_Id', '0')->paginate(2);
+        if ($request->ajax()) {
+            return response()->json(view('admin.users.index', compact('users'))->render());
+        }
         return view('admin.users.index', compact('users'));
+
     }
 }
