@@ -45,17 +45,22 @@ input[type=radio] + label > img {
 
 /* --   -- */
 .preview-section {
+    align-content: center;
     margin: 2px;
-    height: 200px;
+    height: 240px;
     width: 240px;
     border: 1px dashed black;
 }
 
-.profile-preview {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
+@media all and (max-width: 600px) {
+    .preview-section {
+        align-content: center;
+        margin: 2px;
+        margin-left: 50px;
+        height: 180px;
+        width: 240px;
+        border: 1px dashed black;
+    }
 }
 
 .gallery-section {
@@ -63,6 +68,14 @@ input[type=radio] + label > img {
     margin-top: 3px;
 }
 
-.upload-section{
+@media all and (max-width: 600px) {
+    .gallery-section {
+        margin-left: 15px;
+        margin-top: 50px;
+    }
+}
+
+.upload-section {
     height: 240px;
 }
+

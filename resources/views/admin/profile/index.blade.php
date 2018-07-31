@@ -184,21 +184,21 @@
 
 
             $("#removeBtn").click(function (e) {
-                let chk = $('.gallery-section input:radio:checked');
-                let value =chk.attr('value');
                 e.preventDefault();
+                let chk = $('.gallery-section input:radio:checked');
+                let value = chk.attr('value');
                 $.ajax({
                     url: '/admin/delete-profile-picture',
-                    data: value,
+                    data: '_token=' + '{{csrf_token()}}' + '&oldPicture=' + value,
                     type: 'post',
                     dataType: 'json',
                     success: function () {
+                        chk.next('label').remove();
+                        chk.remove();
 
                     }
                 });
             });
-
-
 
         </script>
     </section>

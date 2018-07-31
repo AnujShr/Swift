@@ -121,8 +121,7 @@ class ProfileController extends Controller
             ]);
         } else {
             $fileName = $data['oldPicture'];
-        }
-        ;
+        };
         if ($fileName != '') {
             $user->profile_picture = $fileName;
             $user->save();
@@ -135,7 +134,6 @@ class ProfileController extends Controller
         $data = $request->all();
         $basePath = User::ADMIN_IMAGE_PATH;
         $fileName = $data['oldPicture'];
-        dd($data);
         if ($fileName) {
             $img = explode('.', $fileName);
             foreach (\Config::get('image_size.admin.profile_picture') as $type => $dimension) {
