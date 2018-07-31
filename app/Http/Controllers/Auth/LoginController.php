@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -76,6 +77,8 @@ class LoginController extends Controller
             if ($user->role_id == 1) {
                 $this->redirectTo = '/admin';
             }
+            $user->last_login = Carbon::now();
+            $user->save();
             $data['success'] = true;
             $data['redirect'] = $this->redirectTo;
             return response()->json($data, 200);
