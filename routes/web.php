@@ -55,6 +55,8 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin','namespace'
     Route::post('change-password','ProfileController@changePassword');
     Route::post('profile-picture','ProfileController@uploadProfilePicture')->name('admin.profile.picture');
     Route::post('delete-profile-picture','ProfileController@deleteProfilePicture')->name('admin.profile.delete');
+    Route::get('users','UserController@index')->name('admin.users');
+
 });
 
 
