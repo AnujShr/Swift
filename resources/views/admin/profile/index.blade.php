@@ -195,7 +195,6 @@
                     success: function () {
                         chk.next('label').remove();
                         chk.remove();
-
                     }
                 });
             });

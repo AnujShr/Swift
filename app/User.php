@@ -29,26 +29,38 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+
     public function oldPictures()
     {
         return $this->hasMany(UserImage::class);
     }
 
-    public function getThumbnail($path, $image, $type)
-    {
-        return asset($this->getThumbnailPath($path, $image, $type));
-    }
 
-    public function getThumbnailPath($path, $image, $type)
+    public function getThumbnail($path, $image, $type)
     {
         $img = explode('.', $image);
         $thumbnail = $img[0] . '-' . $type . '.' . $img[1];
         if (Storage::exists($path . $thumbnail)) {
-            $thmbnailPath = 'storage' . $path . $thumbnail;
+            $thmbnailPath = '/storage/' . 'admin/' . $thumbnail;
 
         } else {
-            $thmbnailPath = 'storage' . $path . $image;
+            $thmbnailPath = '/storage/' . 'admin/' . $image;
         }
-        return $thmbnailPath;
+        return asset($thmbnailPath);
+    }
+
+    public function profilePicture()
+    {
+        $profile_pictures = $this->profile_picture;
+        if ($profile_pictures)
+            return $this->getThumbnail(User::ADMIN_IMAGE_PATH, $profile_pictures, 'thumb');
+        else
+            return '';
+    }
+
+    public static function adminDetail()
+    {
+        $user = User::query()->find(auth()->id());
+        return $user;
     }
 }
