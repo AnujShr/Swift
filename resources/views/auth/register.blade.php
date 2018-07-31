@@ -183,7 +183,11 @@
                         '<span aria-hidden="true">&times;</span>' +
                         '</button>' +
                         '</div>';
+
                     $('#message').html(message);
+                    $(':input',registerForm)
+                        .not(':button, :submit, :reset, :hidden')
+                        .val('')
                 },
                 error: function (errors) {
                     let message = '<div style="width:' + width + 'px" class="alert alert-danger" id="message">' +
