@@ -38,3 +38,8 @@
         </div>
     </div>
 </nav>
+<script>
+    if (activeRoute == 'register'){
+        $('.fh5co-nav').addClass('registerHeader');
+    }
+</script>

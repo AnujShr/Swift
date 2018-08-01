@@ -35885,7 +35885,6 @@ module.exports = __webpack_require__(40);
 window.$ = window.jQuery = __webpack_require__(1);
 __webpack_require__(41);
 __webpack_require__(42);
-__webpack_require__(72);
 __webpack_require__(73);
 
 /***/ }),
@@ -36013,71 +36012,7 @@ if (activeRoute === 'front.contact') {
 /* 69 */,
 /* 70 */,
 /* 71 */,
-/* 72 */
-/***/ (function(module, exports) {
-
-function showRegisterForm() {
-    $('.loginBox').fadeOut('fast', function () {
-        $('.registerBox').fadeIn('fast');
-        $('.login-footer').fadeOut('fast', function () {
-            $('.register-footer').fadeIn('fast');
-        });
-        $('.modal-title').html('Register with');
-    });
-    $('.error').removeClass('alert alert-danger').html('');
-}
-
-function showLoginForm() {
-    $('#loginModal .registerBox').fadeOut('fast', function () {
-        $('.loginBox').fadeIn('fast');
-        $('.register-footer').fadeOut('fast', function () {
-            $('.login-footer').fadeIn('fast');
-        });
-
-        $('.modal-title').html('Login with');
-    });
-    $('.error').removeClass('alert alert-danger').html('');
-}
-
-function openLoginModal() {
-    showLoginForm();
-    setTimeout(function () {
-        $('#loginModal').modal('show');
-    }, 230);
-}
-
-function openRegisterModal() {
-    showRegisterForm();
-    setTimeout(function () {
-        $('#loginModal').modal('show');
-    }, 230);
-}
-
-function loginAjax() {
-    /*   Remove this comments when moving to server
-    $.post( "/login", function( data ) {
-            if(data == 1){
-                window.location.replace("/home");            
-            } else {
-                 shakeModal(); 
-            }
-        });
-    */
-
-    /*   Simulate error message from the server   */
-    shakeModal();
-}
-
-function shakeModal() {
-    $('#loginModal .modal-dialog').addClass('shake');
-    $('.error').addClass('alert alert-danger').html("Invalid email/password combination");
-    $('input[type="password"]').val('');
-    setTimeout(function () {
-        $('#loginModal .modal-dialog').removeClass('shake');
-    }, 1000);
-}
-
-/***/ }),
+/* 72 */,
 /* 73 */
 /***/ (function(module, exports) {
 

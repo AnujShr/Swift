@@ -1,0 +1,10 @@
+.registerHeader{
+    background: black;
+}
+.fh5co-reg  {
+
+    z-index: 9;
+    height: 200px;
+    display: table;
+    width: 100%;
+}
