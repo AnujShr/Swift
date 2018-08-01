@@ -35885,6 +35885,7 @@ module.exports = __webpack_require__(40);
 window.$ = window.jQuery = __webpack_require__(1);
 __webpack_require__(41);
 __webpack_require__(42);
+__webpack_require__(72);
 
 /***/ }),
 /* 41 */
@@ -35952,7 +35953,125 @@ if (token) {
 /* 42 */
 /***/ (function(module, exports) {
 
-if (activeRoute === "front.contact") {}
+if (activeRoute === "front.contact") {
+
+    $('#contact').submit(function (e) {
+        e.preventDefault();
+        var data = $(this).serialize();
+
+        $(this).find('div').removeClass('has-error');
+        $(this).find('span').html('');
+        $(this).find('span').removeClass('help-block');
+        $.ajax({
+            data: data,
+            type: 'post',
+            datatype: 'json',
+            success: function success(response) {},
+            error: function error(errors) {
+                $.each(errors.responseJSON.errors, function (key, value) {
+                    console.log(key, value[0]);
+                    $('#' + key).parent('div').addClass('has-error');
+                    $('#' + key).next('span').html(value[0]);
+                    $('#' + key).next('span').addClass('help-block');
+                });
+            }
+        });
+    });
+}
+
+/***/ }),
+/* 43 */,
+/* 44 */,
+/* 45 */,
+/* 46 */,
+/* 47 */,
+/* 48 */,
+/* 49 */,
+/* 50 */,
+/* 51 */,
+/* 52 */,
+/* 53 */,
+/* 54 */,
+/* 55 */,
+/* 56 */,
+/* 57 */,
+/* 58 */,
+/* 59 */,
+/* 60 */,
+/* 61 */,
+/* 62 */,
+/* 63 */,
+/* 64 */,
+/* 65 */,
+/* 66 */,
+/* 67 */,
+/* 68 */,
+/* 69 */,
+/* 70 */,
+/* 71 */,
+/* 72 */
+/***/ (function(module, exports) {
+
+function showRegisterForm() {
+    $('.loginBox').fadeOut('fast', function () {
+        $('.registerBox').fadeIn('fast');
+        $('.login-footer').fadeOut('fast', function () {
+            $('.register-footer').fadeIn('fast');
+        });
+        $('.modal-title').html('Register with');
+    });
+    $('.error').removeClass('alert alert-danger').html('');
+}
+
+function showLoginForm() {
+    $('#loginModal .registerBox').fadeOut('fast', function () {
+        $('.loginBox').fadeIn('fast');
+        $('.register-footer').fadeOut('fast', function () {
+            $('.login-footer').fadeIn('fast');
+        });
+
+        $('.modal-title').html('Login with');
+    });
+    $('.error').removeClass('alert alert-danger').html('');
+}
+
+function openLoginModal() {
+    showLoginForm();
+    setTimeout(function () {
+        $('#loginModal').modal('show');
+    }, 230);
+}
+
+function openRegisterModal() {
+    showRegisterForm();
+    setTimeout(function () {
+        $('#loginModal').modal('show');
+    }, 230);
+}
+
+function loginAjax() {
+    /*   Remove this comments when moving to server
+    $.post( "/login", function( data ) {
+            if(data == 1){
+                window.location.replace("/home");            
+            } else {
+                 shakeModal(); 
+            }
+        });
+    */
+
+    /*   Simulate error message from the server   */
+    shakeModal();
+}
+
+function shakeModal() {
+    $('#loginModal .modal-dialog').addClass('shake');
+    $('.error').addClass('alert alert-danger').html("Invalid email/password combination");
+    $('input[type="password"]').val('');
+    setTimeout(function () {
+        $('#loginModal .modal-dialog').removeClass('shake');
+    }, 1000);
+}
 
 /***/ })
 /******/ ]);

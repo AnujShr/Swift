@@ -7,3 +7,4 @@
 window.$ = window.jQuery = require('jquery');
 require('./bootstrap');
 require('./contact');
+require('./login-register');
