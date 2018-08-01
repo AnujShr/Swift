@@ -9,6 +9,7 @@
     <meta name="keywords"
           content="free website templates, free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive"/>
     <meta name="author" content="FreeHTML5.co"/>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Facebook and Twitter integration -->
     <meta property="og:title" content=""/>
@@ -42,7 +43,10 @@
     <!--[if lt IE 9]>
     <script src="js/respond.min.js"></script>
     <![endif]-->
+    <script>var activeRoute = '{{ Route::currentRouteName()}}'</script>
+
     <script src="{{asset('js/front/app.js')}}"></script>
+
 </head>
 <body>
 

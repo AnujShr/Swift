@@ -12,7 +12,9 @@
                     <div class="display-t">
                         <div class="display-tc animate-box" data-animate-effect="fadeIn">
                             <h1>Contact Us</h1>
-
+                            <h2>Free html5 templates Made by <a href="http://freehtml5.co"
+                                                                target="_blank">freehtml5.co</a>
+                            </h2>
                         </div>
                     </div>
                 </div>
@@ -38,15 +40,18 @@
                 </div>
                 <div class="col-md-6 animate-box">
                     <h3>Get In Touch</h3>
-                    <form action="#">
+                    <form id="contactForm">
+                        {{csrf_field()}}
                         <div class="row form-group">
                             <div class="col-md-6">
                                 <!-- <label for="fname">First Name</label> -->
                                 <input type="text" id="fname" class="form-control" placeholder="Your firstname">
+                                <span class="error"></span>
                             </div>
                             <div class="col-md-6">
                                 <!-- <label for="lname">Last Name</label> -->
                                 <input type="text" id="lname" class="form-control" placeholder="Your lastname">
+                                <span class="error"></span>
                             </div>
                         </div>
 
@@ -54,6 +59,7 @@
                             <div class="col-md-12">
                                 <!-- <label for="email">Email</label> -->
                                 <input type="text" id="email" class="form-control" placeholder="Your email address">
+                                <span class="error"></span>
                             </div>
                         </div>
 
@@ -62,6 +68,7 @@
                                 <!-- <label for="subject">Subject</label> -->
                                 <input type="text" id="subject" class="form-control"
                                        placeholder="Your subject of this message">
+                                <span class="error"></span>
                             </div>
                         </div>
 
@@ -70,12 +77,12 @@
                                 <!-- <label for="message">Message</label> -->
                                 <textarea name="message" id="message" cols="30" rows="10" class="form-control"
                                           placeholder="Say something about us"></textarea>
+                                <span class="error"></span>
                             </div>
                         </div>
                         <div class="form-group">
                             <input type="submit" value="Send Message" class="btn btn-primary">
                         </div>
-
                     </form>
                 </div>
             </div>

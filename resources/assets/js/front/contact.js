@@ -1,6 +1,5 @@
-if (activeRoute === "front.contact") {
-
-    $('#contact').submit(function (e) {
+$(function () {
+    $('#contactForm').submit(function (e) {
         e.preventDefault();
         let data = $(this).serialize();
 
@@ -10,19 +9,19 @@ if (activeRoute === "front.contact") {
         $.ajax({
             data: data,
             type: 'post',
+            url: '/contact',
             datatype: 'json',
             success: function (response) {
-
             },
             error: function (errors) {
                 $.each(errors.responseJSON.errors, function (key, value) {
                     console.log(key, value[0]);
-                    $('#' + key).parent('div').addClass('has-error');
-                    $('#' + key).next('span').html(value[0]);
-                    $('#' + key).next('span').addClass('help-block');
+                    key = $('#' + key);
+                    key.parent('div').addClass('has-error');
+                    key.next('span').html(value[0]);
+                    key.next('span').addClass('help-block');
                 });
             }
         })
     });
-}
-
+});

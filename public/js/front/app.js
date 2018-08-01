@@ -35953,9 +35953,8 @@ if (token) {
 /* 42 */
 /***/ (function(module, exports) {
 
-if (activeRoute === "front.contact") {
-
-    $('#contact').submit(function (e) {
+$(function () {
+    $('#contactForm').submit(function (e) {
         e.preventDefault();
         var data = $(this).serialize();
 
@@ -35965,19 +35964,21 @@ if (activeRoute === "front.contact") {
         $.ajax({
             data: data,
             type: 'post',
+            url: '/contact',
             datatype: 'json',
             success: function success(response) {},
             error: function error(errors) {
                 $.each(errors.responseJSON.errors, function (key, value) {
                     console.log(key, value[0]);
-                    $('#' + key).parent('div').addClass('has-error');
-                    $('#' + key).next('span').html(value[0]);
-                    $('#' + key).next('span').addClass('help-block');
+                    key = $('#' + key);
+                    key.parent('div').addClass('has-error');
+                    key.next('span').html(value[0]);
+                    key.next('span').addClass('help-block');
                 });
             }
         });
     });
-}
+});
 
 /***/ }),
 /* 43 */,

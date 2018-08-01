@@ -14,7 +14,7 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('front.home');
 Route::get('/contact', 'ContactController@index')->name('front.contact');
-Route::post('/contact', 'Contac1tController@store')->name('front.contact.store');
+Route::post('/contact', 'ContactController@store')->name('front.contact.store');
 Route::get('/register/confirm', 'Auth\RegisterConfirmationController@index')->name('register.confirm');
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
 
