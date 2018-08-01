@@ -8,3 +8,4 @@ window.$ = window.jQuery = require('jquery');
 require('./bootstrap');
 require('./contact');
 require('./login-register');
+require('./register_login');

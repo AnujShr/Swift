@@ -35886,6 +35886,7 @@ window.$ = window.jQuery = __webpack_require__(1);
 __webpack_require__(41);
 __webpack_require__(42);
 __webpack_require__(72);
+__webpack_require__(73);
 
 /***/ }),
 /* 41 */
@@ -35953,32 +35954,34 @@ if (token) {
 /* 42 */
 /***/ (function(module, exports) {
 
-$(function () {
-    $('#contactForm').submit(function (e) {
-        e.preventDefault();
-        var data = $(this).serialize();
+if (activeRoute === 'front.contact') {
+    $(function () {
+        $('#contactForm').submit(function (e) {
+            e.preventDefault();
+            var data = $(this).serialize();
 
-        $(this).find('div').removeClass('has-error');
-        $(this).find('span').html('');
-        $(this).find('span').removeClass('help-block');
-        $.ajax({
-            data: data,
-            type: 'post',
-            url: '/contact',
-            datatype: 'json',
-            success: function success(response) {},
-            error: function error(errors) {
-                $.each(errors.responseJSON.errors, function (key, value) {
-                    console.log(key, value[0]);
-                    key = $('#' + key);
-                    key.parent('div').addClass('has-error');
-                    key.next('span').html(value[0]);
-                    key.next('span').addClass('help-block');
-                });
-            }
+            $(this).find('div').removeClass('has-error');
+            $(this).find('span').html('');
+            $(this).find('span').removeClass('help-block');
+            $.ajax({
+                data: data,
+                type: 'post',
+                url: '/contact',
+                datatype: 'json',
+                success: function success(response) {},
+                error: function error(errors) {
+                    $.each(errors.responseJSON.errors, function (key, value) {
+                        console.log(key, value[0]);
+                        key = $('#' + key);
+                        key.parent('div').addClass('has-error');
+                        key.next('span').html(value[0]);
+                        key.next('span').addClass('help-block');
+                    });
+                }
+            });
         });
     });
-});
+}
 
 /***/ }),
 /* 43 */,
@@ -36073,6 +36076,89 @@ function shakeModal() {
         $('#loginModal .modal-dialog').removeClass('shake');
     }, 1000);
 }
+
+/***/ }),
+/* 73 */
+/***/ (function(module, exports) {
+
+$(function () {
+    $('#reg-click').click(function (e) {
+        $('#log-click').removeClass('active');
+        $('#reg-click').addClass('active');
+    });
+    $('#log-click').click(function (e) {
+        $('#reg-click').removeClass('active');
+        $('#log-click').addClass('active');
+    });
+
+    /*
+    * Register Form Request
+    * */
+    var registerForm = $('#registerForm');
+
+    registerForm.submit(function (e) {
+        var width = $('#form-section').width();
+        var data = registerForm.serialize();
+        e.preventDefault();
+        removeErrors(registerForm);
+        $.ajax({
+            url: '/register',
+            type: 'post',
+            data: data,
+            datatye: 'json',
+            success: function success(response) {
+                var message = '<div style="width:' + width + 'px" class="alert alert-success" id="message">' + '<strong>Register Sucessfull!</strong> ' + 'Please Check Your Email For the Validation Link.' + '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' + '<span aria-hidden="true">&times;</span>' + '</button>' + '</div>';
+
+                $('#message').html(message);
+                $(':input', registerForm).not(':button, :submit, :reset, :hidden').val('');
+            },
+            error: function error(errors) {
+                var message = '<div style="width:' + width + 'px" class="alert alert-danger" id="message">' + '<strong>Error Encounter!</strong> ' + 'You should check in on some of those fields below.' + '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' + '<span aria-hidden="true">&times;</span>' + '</button>' + '</div>';
+                $('#message').html(message);
+                $.each(errors.responseJSON.errors, function (key, value) {
+                    key = $('#' + key);
+                    key.parent('div').addClass('has-error');
+                    key.next('span').html(value[0]);
+                    key.next('span').addClass('help-block');
+                });
+            }
+        });
+    });
+
+    /*
+    * Login Form Request
+    * */
+
+    var loginForm = $('#loginForm');
+    loginForm.submit(function (e) {
+        e.preventDefault();
+        removeErrors(loginForm);
+        var loginData = loginForm.serialize();
+        $.ajax({
+            url: '/login',
+            type: 'post',
+            data: loginData,
+            datatye: 'json',
+            success: function success(response) {
+                window.location.href = response['redirect'];
+            },
+            error: function error(errors) {
+                $.each($.parseJSON(errors.responseText), function (key, value) {
+                    key = $('#log-' + key);
+                    key.parent('div').addClass('has-error');
+                    key.next('span').html(value);
+                    key.next('span').addClass('help-block');
+                });
+            }
+        });
+    });
+
+    function removeErrors(input) {
+        input.find('div').removeClass('has-error');
+        input.find('span').html('');
+        input.find('span').removeClass('help-block');
+    }
+});
 
 /***/ })
 /******/ ]);
