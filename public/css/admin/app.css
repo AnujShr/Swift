@@ -6863,6 +6863,13 @@ input[type=radio] + label > img {
     text-align: center;
 }
 
+.dropdown {
+    list-style-type: none;
+}
+
+a.list-text {
+    color: black;
+}
 
 /**
 *For Admin Side

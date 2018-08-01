@@ -42,20 +42,21 @@ Route::get('/register/confirm', 'Auth\RegisterConfirmationController@index')->na
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
 
 Route::group(['middleware' => ['auth']], function () {
-    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/profile', 'HomeController@index')->name('home');
 });
 
-Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin','namespace'=>'Admin'], function () {
+Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::get('/', function () {
         return view('admin.dasboard.index');
     })->name('admin');
-    Route::get('profile','ProfileController@index')->name('admin.profile');
-    Route::post('profile','ProfileController@update');
-    Route::post('confirm-password','ProfileController@confirmPassword');
-    Route::post('change-password','ProfileController@changePassword');
-    Route::post('profile-picture','ProfileController@uploadProfilePicture')->name('admin.profile.picture');
-    Route::post('delete-profile-picture','ProfileController@deleteProfilePicture')->name('admin.profile.delete');
-    Route::get('users','UserController@index')->name('admin.users');
+    Route::get('profile', 'ProfileController@index')->name('admin.profile');
+    Route::post('profile', 'ProfileController@update');
+    Route::post('confirm-password', 'ProfileController@confirmPassword');
+    Route::post('change-password', 'ProfileController@changePassword');
+    Route::post('profile-picture', 'ProfileController@uploadProfilePicture')->name('admin.profile.picture');
+    Route::post('delete-profile-picture', 'ProfileController@deleteProfilePicture')->name('admin.profile.delete');
+    Route::get('users', 'UserController@index')->name('admin.users');
+    ROute::get('user/login/{id}', 'UserController@loginAs')->name('admin.loginAsUser');
 
 });
 

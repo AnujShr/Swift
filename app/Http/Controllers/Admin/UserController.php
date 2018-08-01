@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
@@ -20,6 +22,13 @@ class UserController extends Controller
             return response()->json(view('admin.users.index', compact('users'))->render());
         }
         return view('admin.users.index', compact('users'));
+    }
 
+    function loginAs($id)
+    {
+        Auth::logout();
+        Auth::loginUsingId($id);
+        Session::put('login-as-brewer', true);
+        return redirect('profile');
     }
 }

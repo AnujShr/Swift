@@ -1,5 +1,8 @@
 @extends('admin.master')
 @section('page-content')
+    <style>
+
+    </style>
     <section class="content-header">
         <h1>
             <i class="fa fa-users fa-4"></i> Users
@@ -48,6 +51,7 @@
                                                 <th>Email</th>
                                                 <th>Last Login</th>
                                                 <th>Status</th>
+                                                <th>Action</th>
                                             </tr>
                                             @foreach($users as $user)
                                                 <tr>
@@ -60,12 +64,25 @@
                                                     \Carbon\Carbon::parse($user->last_login)->diffForHumans().'</span>'
                                                     :'<span class="label label-danger">NOT LOGIN</span>'!!}</td>
                                                     <td>@if($user->confirmed == 1)
-                                                            <span class="label label-success">Activated</span></td>
-                                                    @else
-                                                        <span class="label label-warning">Pending</span></td>
-                                                    @endif
+                                                            <span class="label label-success">Activated</span>
+                                                        @else
+                                                            <span class="label label-warning">Pending</span>
+                                                        @endif
+                                                    </td>
+                                                    <td>
 
+                                                        <li class="dropdown">
+                                                            <a class="list-text" href="#" class="dropdown-toggle" data-toggle="dropdown"
+                                                               role="button" aria-expanded="false">
+                                                                <i class="fa fa-list-ul"></i> <span
+                                                                        class="caret"></span></a>
+                                                            <ul class="dropdown-menu" role="menu">
+                                                                <li><a href="{{ route('admin.loginAsUser',[$user->id]) }}" data-toggle="tooltip" title="Login as User"><i class=" icon-enter"></i>Login As User</a></li>
+                                                                <li><a href="#">One more separated link</a></li>
+                                                            </ul>
+                                                        </li>
 
+                                                    </td>
                                                 </tr>
                                             @endforeach
 
@@ -84,7 +101,6 @@
 
 
     <script>
-
         $(document).on('click', '.pagination a', function (event) {
             $('li').removeClass('active');
             $(this).parent('li').addClass('active');
@@ -111,5 +127,4 @@
         }
 
     </script>
-    </div>
 @endsection
