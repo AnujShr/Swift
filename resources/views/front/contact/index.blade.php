@@ -12,8 +12,8 @@
                     <div class="display-t">
                         <div class="display-tc animate-box" data-animate-effect="fadeIn">
                             <h1>Contact Us</h1>
-                            <h2>Free html5 templates Made by <a href="http://freehtml5.co"
-                                                                target="_blank">freehtml5.co</a>
+                            <h2>
+                                Happy To help
                             </h2>
                         </div>
                     </div>
@@ -90,7 +90,7 @@
         </div>
     </div>
 
-    <div id="map" class="fh5co-map"></div>
+    {{--<div id="map" class="fh5co-map"></div>--}}
 
     <div id="fh5co-started">
         <div class="container">
