@@ -72,7 +72,7 @@
                                                     <td>
 
                                                         <li class="dropdown">
-                                                            <a class="list-text" href="#" class="dropdown-toggle" data-toggle="dropdown"
+                                                            <a class="list-text dropdown-toggle" href="#" data-toggle="dropdown"
                                                                role="button" aria-expanded="false">
                                                                 <i class="fa fa-list-ul"></i> <span
                                                                         class="caret"></span></a>

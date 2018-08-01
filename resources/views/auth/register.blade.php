@@ -1,6 +1,31 @@
 @extends('layouts.master')
 @section('page-content')
+    <header id="fh5co-header" class="fh5co-cover" role="banner" style="background-image:url(images/img_bg_2.jpg);">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1 text-center">
+                    <div class="display-t">
+                        <div class="display-tc animate-box" data-animate-effect="fadeIn">
+                            <h1>Cross The Bridge Together!!!</h1>
 
+                            {{--<div class="row">
+                                <form class="form-inline" id="fh5co-header-subscribe">
+                                    <div class="col-md-6 col-md-offset-3">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="email"
+                                                   placeholder="Enter your email">
+                                            <button type="submit" class="btn btn-default">Join Now</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>--}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
     <div class="fh5co-contact animate-box">
         <div class="container">
             <div class="row">

@@ -1,22 +1,40 @@
-<header id="fh5co-header" role="banner">
+<nav class="fh5co-nav" role="navigation">
     <div class="container">
-        <div class="header-inner">
-            <h1><a href="{{route('home')}}">Flew</a></h1>
-            <nav role="navigation">
+        <div class="row">
+            <div class="left-menu text-right menu-1">
                 <ul>
-                    <li class="{{ Request::is('/') ? 'active' : '' }}"><a href="/">Home</a></li>
-                    <li class="{{ Request::is('about') ? 'active' : '' }}"><a href="{{route('about')}}">About</a></li>
-                    {{--<li class="{{ Request::is('project') ? 'active' : '' }}"><a href="{{route('work')}}">Work</a></li>--}}
-                    <li class="{{ Request::is('contact') ? 'active' : '' }}"><a href="{{route('contact')}}">Contact</a>
+                    <li><a href="work.html">Work</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li class="has-dropdown">
+                        <a href="services.html">Services</a>
+                        <ul class="dropdown">
+                            <li><a href="#">Web Design</a></li>
+                            <li><a href="#">eCommerce</a></li>
+                            <li><a href="#">Branding</a></li>
+                            <li><a href="#">API</a></li>
+                        </ul>
                     </li>
-                    @if(!Auth::check())
-                        <li class="cta"><a href="{{route('register')}}">Sign Up/Sign In</a></li>
-                    @else
-                        <li class="cta"><a href="{{(Auth::user()->role_id == 1)?route('admin'):route('home')}}">
-                                Profile</a></li>
-                    @endif
                 </ul>
-            </nav>
+            </div>
+            <div class="logo text-center">
+                <div id="fh5co-logo"><a href="{{route('front.home')}}">Orange.</a></div>
+            </div>
+            <div class="right-menu text-left menu-1">
+                <ul>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li class="has-dropdown">
+                        <a href="#">Tools</a>
+                        <ul class="dropdown">
+                            <li><a href="#">HTML5</a></li>
+                            <li><a href="#">CSS3</a></li>
+                            <li><a href="#">Sass</a></li>
+                            <li><a href="#">jQuery</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="{{route('front.contact')}}">Contact</a></li>
+                    <li class="btn-cta"><a href="#"><span>Login</span></a></li>
+                </ul>
+            </div>
         </div>
     </div>
-</header>
+</nav>
