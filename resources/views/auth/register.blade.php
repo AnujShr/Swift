@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('page-content')
-    <header id="fh5co-header" class="fh5co-reg " role="banner" style="background-image:url(images/img_bg_2.jpg);">
+    <header id="fh5co-header" class="fh5co-reg registerHeader" role="banner">
         <div class="container">
             <div class="row">
                 <div class="col-md-10 col-md-offset-1 text-center">
