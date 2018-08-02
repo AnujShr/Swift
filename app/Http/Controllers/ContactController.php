@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Contact;
 use App\Http\Requests\ContactFormRequest;
 use App\Mail\ContactMail;
+use Illuminate\Support\Facades\Session;
 
 class ContactController extends Controller
 {
@@ -18,6 +19,7 @@ class ContactController extends Controller
         Contact::create($data);
         app('mailer')->queue(new ContactMail($data));
         $return['success'] = 'true';
+        Session::flash('message','Conact Submitted Successfully');
         return response()->json($return);
     }
 }

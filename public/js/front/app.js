@@ -35885,7 +35885,7 @@ module.exports = __webpack_require__(40);
 window.$ = window.jQuery = __webpack_require__(1);
 __webpack_require__(41);
 __webpack_require__(42);
-__webpack_require__(73);
+__webpack_require__(43);
 
 /***/ }),
 /* 41 */
@@ -35967,7 +35967,9 @@ if (activeRoute === 'front.contact') {
                 type: 'post',
                 url: '/contact',
                 datatype: 'json',
-                success: function success(response) {},
+                success: function success(response) {
+                    location.reload();
+                },
                 error: function error(errors) {
                     $.each(errors.responseJSON.errors, function (key, value) {
                         console.log(key, value[0]);
@@ -35983,37 +35985,7 @@ if (activeRoute === 'front.contact') {
 }
 
 /***/ }),
-/* 43 */,
-/* 44 */,
-/* 45 */,
-/* 46 */,
-/* 47 */,
-/* 48 */,
-/* 49 */,
-/* 50 */,
-/* 51 */,
-/* 52 */,
-/* 53 */,
-/* 54 */,
-/* 55 */,
-/* 56 */,
-/* 57 */,
-/* 58 */,
-/* 59 */,
-/* 60 */,
-/* 61 */,
-/* 62 */,
-/* 63 */,
-/* 64 */,
-/* 65 */,
-/* 66 */,
-/* 67 */,
-/* 68 */,
-/* 69 */,
-/* 70 */,
-/* 71 */,
-/* 72 */,
-/* 73 */
+/* 43 */
 /***/ (function(module, exports) {
 
 $(function () {
@@ -36031,6 +36003,10 @@ $(function () {
     * */
     var registerForm = $('#registerForm');
 
+    var errorMessage = '<div class="alert alert-danger" id="message">' + '<strong>Error Encounter!</strong> ' + 'You should check in on some of those fields below.' + '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' + '<span aria-hidden="true">&times;</span>' + '</button>' + '</div>';
+
+    var successMessage = '<div class="alert alert-success" id="message">' + '<strong>Register Sucessfull!</strong> ' + 'Please Check Your Email For the Validation Link.' + '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' + '<span aria-hidden="true">&times;</span>' + '</button>' + '</div>';
+
     registerForm.submit(function (e) {
         var width = $('#form-section').width();
         var data = registerForm.serialize();
@@ -36042,14 +36018,12 @@ $(function () {
             data: data,
             datatye: 'json',
             success: function success(response) {
-                var message = '<div style="width:' + width + 'px" class="alert alert-success" id="message">' + '<strong>Register Sucessfull!</strong> ' + 'Please Check Your Email For the Validation Link.' + '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' + '<span aria-hidden="true">&times;</span>' + '</button>' + '</div>';
 
-                $('#message').html(message);
+                $('#message').html(successMessage);
                 $(':input', registerForm).not(':button, :submit, :reset, :hidden').val('');
             },
             error: function error(errors) {
-                var message = '<div style="width:' + width + 'px" class="alert alert-danger" id="message">' + '<strong>Error Encounter!</strong> ' + 'You should check in on some of those fields below.' + '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' + '<span aria-hidden="true">&times;</span>' + '</button>' + '</div>';
-                $('#message').html(message);
+                $('#message').html(errorMessage);
                 $.each(errors.responseJSON.errors, function (key, value) {
                     key = $('#' + key);
                     key.parent('div').addClass('has-error');
@@ -36084,6 +36058,8 @@ $(function () {
                     key.next('span').html(value);
                     key.next('span').addClass('help-block');
                 });
+
+                $('#message').html(errorMessage);
             }
         });
     });
@@ -36092,6 +36068,7 @@ $(function () {
         input.find('div').removeClass('has-error');
         input.find('span').html('');
         input.find('span').removeClass('help-block');
+        $('#message').html('');
     }
 });
 

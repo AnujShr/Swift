@@ -28,7 +28,7 @@ class ContactFormRequest extends FormRequest
             'lname' => 'required',
             'email' => 'required|email',
             'message' => 'required|string|min:15',
-            'subject'=> 'required|string|max:25',
+            'subject'=> 'required|string|max:150',
         ];
     }
 }

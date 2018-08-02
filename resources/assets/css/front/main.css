@@ -1,8 +1,15 @@
 .registerHeader{
-    background: black;
+    background: rgba(255, 62, 28, 0.5);
+    background: -moz-linear-gradient(left, rgba(255, 62, 28, 0.5) 0%, rgba(255, 62, 28, 0.63) 26%, darkorange 100%);
+    background: -webkit-gradient(left top, right top, color-stop(0%, rgba(255, 62, 28, 0.5)), color-stop(26%, rgba(255, 62, 28, 0.63)), color-stop(100%, darkorange));
+    background: -webkit-linear-gradient(left, rgba(255, 62, 28, 0.5) 0%, rgba(255, 62, 28, 0.63) 26%, darkorange 100%);
+    background: -o-linear-gradient(left, rgba(255, 62, 28, 0.5) 0%, rgba(255, 62, 28, 0.63) 26%, darkorange 100%);
+    background: -ms-linear-gradient(left, rgba(255, 62, 28, 0.5) 0%, rgba(255, 62, 28, 0.63) 26%, darkorange 100%);
+    background: linear-gradient(to right, rgba(255, 62, 28, 0.5) 0%, rgba(255, 62, 28, 0.63) 26%, darkorange 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff3e1c', endColorstr='#ff8c00', GradientType=1 );
 }
-.fh5co-reg  {
 
+.fh5co-reg  {
     z-index: 9;
     height: 200px;
     display: table;

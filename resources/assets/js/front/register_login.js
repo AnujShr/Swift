@@ -13,6 +13,23 @@ $(function () {
     * */
     let registerForm = $('#registerForm');
 
+    let errorMessage = '<div class="alert alert-danger" id="message">' +
+        '<strong>Error Encounter!</strong> ' +
+        'You should check in on some of those fields below.' +
+        '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
+        '<span aria-hidden="true">&times;</span>' +
+        '</button>' +
+        '</div>';
+
+    let successMessage = '<div class="alert alert-success" id="message">' +
+        '<strong>Register Sucessfull!</strong> ' +
+        'Please Check Your Email For the Validation Link.' +
+        '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
+        '<span aria-hidden="true">&times;</span>' +
+        '</button>' +
+        '</div>';
+
+
     registerForm.submit(function (e) {
         let width = $('#form-section').width();
         let data = registerForm.serialize();
@@ -24,28 +41,14 @@ $(function () {
             data: data,
             datatye: 'json',
             success: function (response) {
-                let message = '<div style="width:' + width + 'px" class="alert alert-success" id="message">' +
-                    '<strong>Register Sucessfull!</strong> ' +
-                    'Please Check Your Email For the Validation Link.' +
-                    '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
-                    '<span aria-hidden="true">&times;</span>' +
-                    '</button>' +
-                    '</div>';
 
-                $('#message').html(message);
+                $('#message').html(successMessage);
                 $(':input', registerForm)
                     .not(':button, :submit, :reset, :hidden')
                     .val('')
             },
             error: function (errors) {
-                let message = '<div style="width:' + width + 'px" class="alert alert-danger" id="message">' +
-                    '<strong>Error Encounter!</strong> ' +
-                    'You should check in on some of those fields below.' +
-                    '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
-                    '<span aria-hidden="true">&times;</span>' +
-                    '</button>' +
-                    '</div>';
-                $('#message').html(message);
+                $('#message').html(errorMessage);
                 $.each(errors.responseJSON.errors, function (key, value) {
                     key = $('#' + key);
                     key.parent('div').addClass('has-error');
@@ -81,6 +84,8 @@ $(function () {
                     key.next('span').addClass('help-block');
 
                 });
+
+                $('#message').html(errorMessage);
             }
         });
     });
@@ -89,6 +94,7 @@ $(function () {
         input.find('div').removeClass('has-error');
         input.find('span').html('');
         input.find('span').removeClass('help-block');
+        $('#message').html('');
     }
 
 });

@@ -1,8 +1,12 @@
 @import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);.registerHeader{
-    background: black;
+    background: rgba(255, 62, 28, 0.5);
+    background: -webkit-gradient(left top, right top, color-stop(0%, rgba(255, 62, 28, 0.5)), color-stop(26%, rgba(255, 62, 28, 0.63)), color-stop(100%, darkorange));
+    background: -webkit-gradient(linear, left top, right top, from(rgba(255, 62, 28, 0.5)), color-stop(26%, rgba(255, 62, 28, 0.63)), to(darkorange));
+    background: linear-gradient(to right, rgba(255, 62, 28, 0.5) 0%, rgba(255, 62, 28, 0.63) 26%, darkorange 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff3e1c', endColorstr='#ff8c00', GradientType=1 );
 }
-.fh5co-reg  {
 
+.fh5co-reg  {
     z-index: 9;
     height: 200px;
     display: table;
