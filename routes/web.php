@@ -25,18 +25,22 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('profile', 'ProfileController@index')->name('user.profile');
 });
 Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin', 'namespace' => 'Admin'], function () {
+
     Route::get('/', function () {
         return view('admin.dasboard.index');
     })->name('admin');
+
     Route::get('profile', 'ProfileController@index')->name('admin.profile');
     Route::post('profile', 'ProfileController@update');
     Route::post('confirm-password', 'ProfileController@confirmPassword');
     Route::post('change-password', 'ProfileController@changePassword');
     Route::post('profile-picture', 'ProfileController@uploadProfilePicture')->name('admin.profile.picture');
     Route::post('delete-profile-picture', 'ProfileController@deleteProfilePicture')->name('admin.profile.delete');
+
     Route::get('users', 'UserController@index')->name('admin.users');
     Route::get('user/login/{id}', 'UserController@loginAs')->name('admin.loginAsUser');
 
+    Route::get('pages','PageController@index')->name('admin.pages');
 });
 
 

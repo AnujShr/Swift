@@ -1,12 +1,12 @@
-/*
-$(document).on('click', '.sidebar-toggle', function () {
+$(function () {
+    $('#table-datatable').DataTable({
+        'responsive': true,
+        'paging': true,
+        'lengthChange': false,
+        'searching': true,
+        'ordering': true,
+        'info': true,
+        'autoWidth': false,
+    });
 
-    let body = $('body');
-    if (body.hasClass("sidebar-collapse")) {
-        body.addClass("sidebar-collapse");
-    }
-    else {
-        body.removeClass("sidebar-collapse");
-    }
-
-});*/
+});

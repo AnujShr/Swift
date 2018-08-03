@@ -44,7 +44,7 @@
                 </a>
             </li>
             <li>
-                <a href="{{route('admin.users')}}">
+                <a href="{{route('admin.pages')}}">
                     <i class="fa fa-users"></i> <span>Pages</span>
                 </a>
             </li>

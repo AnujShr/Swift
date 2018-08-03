@@ -91,3 +91,7 @@ a.list-text {
     color: black;
 }
 
+
+tfoot{
+    display: none;
+}
