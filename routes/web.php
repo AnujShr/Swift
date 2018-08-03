@@ -13,13 +13,13 @@
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('front.home');
-Route::get('/contact', 'ContactController@index')->name('front.contact');
-Route::post('/contact', 'ContactController@store')->name('front.contact.store');
 Route::get('/register/confirm', 'Auth\RegisterConfirmationController@index')->name('register.confirm');
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
-Route::get('about', function () {
-    return view('front.about.index');
-})->name('front.about');
+
+Route::get('/contact', 'PageController@contact')->name('front.contact');
+Route::post('/contact', 'ContactController@store')->name('front.contact.store');
+
+Route::get('/about', 'PageController@about')->name('front.about');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('profile', 'ProfileController@index')->name('user.profile');
@@ -42,7 +42,7 @@ Route::group(['middleware' => ['web', 'auth', 'admin'], 'prefix' => 'admin', 'na
 
     Route::get('pages', 'PageController@index')->name('admin.pages');
     Route::get('pages/{slug}', 'PageController@view')->name('admin.pages.view');
-    Route::put('pages/{slug}','PageController@update')->name('admin.page.update');
+    Route::put('pages/{slug}', 'PageController@update')->name('admin.page.update');
 });
 
 

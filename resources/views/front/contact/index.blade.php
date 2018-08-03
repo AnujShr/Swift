@@ -1,7 +1,9 @@
 @extends('layouts.front.master')
 @section('page-content')
     <div class="fh5co-loader"></div>
-
+    <script>
+        var activeRoute = 'front.contact' ;
+    </script>
 
     <header id="fh5co-header" class="fh5co-cover fh5co-cover-sm" role="banner"
             style="background-image:url(images/img_bg_2.jpg);">
@@ -12,8 +14,7 @@
                     <div class="display-t">
                         <div class="display-tc animate-box" data-animate-effect="fadeIn">
                             <h1>Contact Us</h1>
-                            <h2>
-                                Happy To help
+                            <h2>Happy To help
                             </h2>
                         </div>
                     </div>

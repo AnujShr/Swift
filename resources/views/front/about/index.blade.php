@@ -7,7 +7,7 @@
                 <div class="col-md-8 col-md-offset-2 text-center">
                     <div class="display-t">
                         <div class="display-tc animate-box" data-animate-effect="fadeIn">
-                            <h1>About Us</h1>
+                            <h1>{{$page->title}}</h1>
                         </div>
                     </div>
                 </div>
@@ -21,13 +21,11 @@
                     <div class="col-md-6 col-md-push-6">
                         <div class="desc">
                             <h3>History</h3>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse quo est quis mollitia ratione magni assumenda repellat atque modi temporibus tempore ex. Dolore facilis ex sunt ea praesentium expedita numquam?</p>
-                            <p>Quos quia provident consequuntur culpa facere ratione maxime commodi voluptates id repellat velit eaque aspernatur expedita. Possimus itaque adipisci rem dolorem nesciunt perferendis quae amet deserunt eum labore quidem minima.</p>
+                            <p>{!! $content->history??'' !!}</p>
                         </div>
                         <div class="desc">
                             <h3>Mission &amp; Vission</h3>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse quo est quis mollitia ratione magni assumenda repellat atque modi temporibus tempore ex. Dolore facilis ex sunt ea praesentium expedita numquam?</p>
-                            <p>Quos quia provident consequuntur culpa facere ratione maxime commodi voluptates id repellat velit eaque aspernatur expedita. Possimus itaque adipisci rem dolorem nesciunt perferendis quae amet deserunt eum labore quidem minima.</p>
+                            <p>{!! $content->mission??'' !!}</p>
                         </div>
                     </div>
                     <div class="col-md-6 col-md-pull-6">
@@ -40,7 +38,7 @@
                 <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
                     <span>Productive Staff</span>
                     <h2>Meet Our Staff</h2>
-                    <p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>
+                    <p>{!! $content->meet??'' !!}</p>
                 </div>
             </div>
             <div class="row">
@@ -89,4 +87,5 @@
             </div>
         </div>
     </div>
+
 @endsection
