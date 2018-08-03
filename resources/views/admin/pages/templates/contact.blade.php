@@ -1,28 +1,33 @@
-@extends('layouts.admin.master')
-@section('page-content')
-    <section class="content-header">
-        <h1>
-            Contact Page
-            <small>Control panel</small>
-        </h1>
-        <ol class="breadcrumb">
-            <li><a href="{{route('admin')}}"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li> <a href="{{route('admin.pages')}}"><i class="fa fa-file"></i>Pages</a></li>
-            <li class="active">Contact Page</li>
-        </ol>
-    </section>
-    <section class="content">
-        <div class="row">
-            <div class="content">
-                <div class="panel panel-flat">
-                    <div class="panel-heading">
-                        <h5 class="panel-title">Contact Page</h5>
-                    </div>
-                    <div class="panel-body">
+<div class="form-group ">
+    {!!Form::label('title', 'Title', ['class' => "control-label"])!!}
+    {!!Form::input('text', 'title', $page->title?:'',
+        ['class' => "form-control ",  'required' => 'required'])!!}
+</div>
+<div class="form-group">
+    {!!Form::label('header_content_top', 'Header Content Top', ['class' => "control-label"])!!}
+    {!!Form::textarea('header_content_top', $content['header_content_top']??'',
+        ['class' => 'form-control summernote', 'required' => 'required'])!!}
+</div>
+<div class="form-group">
+    {!!Form::label('header_content_bottom', 'Header Content Bottom', ['class' => "control-label"])!!}
+    {!!Form::textarea('header_content_bottom', $content['header_content_bottom']??'',
+        ['class' => 'form-control summernote', 'required' => 'required'])!!}
+</div>
 
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-@endsection
+<div class="form-group ">
+    {!!Form::label('location', 'Location', ['class' => "control-label"])!!}
+    {!!Form::input('text', 'location', $content['location']??'',
+        ['class' => "form-control ",  'required' => 'required'])!!}
+</div>
+
+<div class="form-group ">
+    {!!Form::label('contact_no', 'Contact Number', ['class' => "control-label"])!!}
+    {!!Form::input('text', 'contact_no', $content['contact_no']??'',
+        ['class' => "form-control ",  'required' => 'required'])!!}
+</div>
+
+<div class="form-group">
+    {!!Form::label('email', "Enquiry Email", ['class' => "control-label"])!!}
+    {!!Form::input('email','email', $content['email']??'',
+        ['class' => 'form-control', 'required' => 'required'])!!}
+</div>
