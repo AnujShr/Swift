@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.front.master')
 @section('page-content')
     <header id="fh5co-header" class="fh5co-reg registerHeader" role="banner">
         <div class="container">

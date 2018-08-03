@@ -4,7 +4,7 @@
             <div class="left-menu text-right menu-1">
                 <ul>
                     <li><a href="work.html">Work</a></li>
-                    <li><a href="about.html">About</a></li>
+                    <li><a href="{{route('front.about')}}">About</a></li>
                     <li class="has-dropdown">
                         <a href="services.html">Services</a>
                         <ul class="dropdown">

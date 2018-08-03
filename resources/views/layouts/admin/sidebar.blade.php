@@ -43,6 +43,11 @@
                     <i class="fa fa-users"></i> <span>Users</span>
                 </a>
             </li>
+            <li>
+                <a href="{{route('admin.users')}}">
+                    <i class="fa fa-users"></i> <span>Pages</span>
+                </a>
+            </li>
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-files-o"></i>

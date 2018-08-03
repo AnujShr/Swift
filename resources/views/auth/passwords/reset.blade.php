@@ -1,4 +1,4 @@
-@extends('flewLa.app')
+@extends('layouts.front.master')
 
 @section('content')
 <div class="container">

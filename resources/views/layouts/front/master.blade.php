@@ -54,11 +54,11 @@
 
 <div id="page">
 
-    @include('layouts.header')
+    @include('layouts.front.header')
 
     @yield('page-content')
 
-    @include('layouts.footer')
+    @include('layouts.front.footer')
 
 </div>
 

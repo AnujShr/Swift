@@ -14,7 +14,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        view()->composer(['admin.sidebar', 'admin.header'], function ($view) {
+        view()->composer(['layouts.admin.sidebar', 'layouts.admin.header'], function ($view) {
             $view->with('displayAdminDetail', User::adminDetail());
         });
     }

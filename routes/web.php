@@ -17,6 +17,9 @@ Route::get('/contact', 'ContactController@index')->name('front.contact');
 Route::post('/contact', 'ContactController@store')->name('front.contact.store');
 Route::get('/register/confirm', 'Auth\RegisterConfirmationController@index')->name('register.confirm');
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
+Route::get('about',function (){
+    return view('front.about.index');
+})->name('front.about');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('profile', 'ProfileController@index')->name('user.profile');

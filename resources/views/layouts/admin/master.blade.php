@@ -18,19 +18,19 @@
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
-@include('admin.header')
+@include('layouts.admin.header')
 <!-- Left side column. contains the logo and sidebar -->
-@include('admin.sidebar')
+@include('layouts.admin.sidebar')
 
 <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         @yield('page-content')
     </div>
     <!-- /.content-wrapper -->
-@include('admin.footer')
+@include('layouts.admin.footer')
 
 <!-- Control Sidebar -->
-    @include('admin.control-sidebar')
+    @include('layouts.admin.control-sidebar')
 </div>
 <!-- ./wrapper -->
 </body>
