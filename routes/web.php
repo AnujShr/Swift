@@ -18,7 +18,9 @@ Route::post('/contact', 'ContactController@store')->name('front.contact.store');
 Route::get('/register/confirm', 'Auth\RegisterConfirmationController@index')->name('register.confirm');
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
 
-
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('profile', 'ProfileController@index')->name('user.profile');
+});
 Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::get('/', function () {
         return view('admin.dasboard.index');

@@ -32,14 +32,21 @@
                         </ul>
                     </li>
                     <li><a href="{{route('front.contact')}}">Contact</a></li>
-                    <li class="btn-cta"><a href="#"><span>Login</span></a></li>
+                    @if(!auth()->check())
+                    <li class="btn-cta"><a href="/register"><span>Sign Up</span></a></li>
+                        @else
+                        <li class="has-dropdown">
+                            <a href="#">Account</a>
+                            <ul class="dropdown">
+                                <li><a href="#">Profile</a></li>
+                                <li><a href="{{route('logout')}}">Logout</a></li>
+                                <li><a href="#">Help</a></li>
+                            </ul>
+                        </li>
+                    @endif
                 </ul>
             </div>
         </div>
     </div>
 </nav>
-<script>
-    if (activeRoute == 'register'){
-        $('.fh5co-nav').addClass('registerHeader');
-    }
-</script>
+
