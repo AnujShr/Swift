@@ -45,7 +45,7 @@
             </li>
             <li>
                 <a href="{{route('admin.pages')}}">
-                    <i class="fa fa-users"></i> <span>Pages</span>
+                    <i class="fa fa-file"></i> <span>Pages</span>
                 </a>
             </li>
             <li class="treeview">
