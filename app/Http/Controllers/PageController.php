@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Page;
+use Illuminate\Support\Facades\Route;
 
 class PageController extends Controller
 {
@@ -24,5 +25,10 @@ class PageController extends Controller
         }
         $content = json_decode($page->content);
         return view('front.contact.index', compact('page', 'content', 'activeRoutename'));
+    }
+
+    public function feedback()
+    {
+
     }
 }

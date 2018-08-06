@@ -21,6 +21,10 @@ Route::post('/contact', 'ContactController@store')->name('front.contact.store');
 
 Route::get('/about', 'PageController@about')->name('front.about');
 
+Route::get('/work',function (){
+    return view('front.work.index');
+})->name('work');
+
 Route::group(['middleware' => ['auth']], function () {
     Route::get('profile', 'ProfileController@index')->name('user.profile');
 });

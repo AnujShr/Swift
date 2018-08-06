@@ -7,7 +7,8 @@
                 <div class="col-md-8 col-md-offset-2 text-center">
                     <div class="display-t">
                         <div class="display-tc animate-box" data-animate-effect="fadeIn">
-                            <h1>{{$page->title}}</h1>
+                            <h1>{!! $content->header_content_top??'' !!}</h1>
+                            <p>{!! $content->header_content_bottom??'' !!}</p>
                         </div>
                     </div>
                 </div>

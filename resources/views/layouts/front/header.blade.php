@@ -3,10 +3,10 @@
         <div class="row">
             <div class="left-menu text-right menu-1">
                 <ul>
-                    <li><a href="work.html">Work</a></li>
+                    <li><a href="{{route('work')}}">Work</a></li>
                     <li><a href="{{route('front.about')}}">About</a></li>
                     <li class="has-dropdown">
-                        <a href="services.html">Services</a>
+                        <a href="">Services</a>
                         <ul class="dropdown">
                             <li><a href="#">Web Design</a></li>
                             <li><a href="#">eCommerce</a></li>
