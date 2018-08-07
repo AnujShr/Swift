@@ -61,7 +61,7 @@ class LoginController extends Controller
         $email = $request->input('email');
         $password = $request->input('password');
 
-        $user_exist = User::where('email', $email)->first();
+        $user_exist = User::query()->where('email', $email)->first();
         if (!$user_exist) {
             $data['email'] = 'Account doesn\'t exist.';
             return response()->json($data, 422);

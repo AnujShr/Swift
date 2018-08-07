@@ -52223,7 +52223,6 @@ module.exports = function spread(callback) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(159);
-__webpack_require__(166);
 __webpack_require__(167);
 module.exports = __webpack_require__(168);
 
@@ -52242,6 +52241,7 @@ module.exports = __webpack_require__(168);
 window.$ = window.jQuery = __webpack_require__(2);
 __webpack_require__(160);
 __webpack_require__(165);
+__webpack_require__(166);
 
 // window.Vue = require('vue');
 
@@ -83115,7 +83115,53 @@ $(function () {
 /* 166 */
 /***/ (function(module, exports) {
 
-// removed by extract-text-webpack-plugin
+if (activeRoute === 'admin.users') {
+    $(function () {
+        /* --AJAX pagination-- */
+        $(document).on('click', '.pagination a', function (event) {
+            event.preventDefault();
+            var myurl = $(this).attr('href');
+            var page = $(this).attr('href').split('page=')[1];
+            getData(page);
+            window.history.pushState("", "", myurl);
+        });
+
+        function getData(page) {
+            $.ajax({
+                url: '?page=' + page,
+                type: "get",
+                datatype: "html"
+            }).done(function (data) {
+                $('.tables').html($(data).find('.tables').html());
+            }).fail(function (jqXHR, ajaxOptions, thrownError) {
+                alert('No response from server');
+            });
+        }
+
+        /* --Search -- */
+        var timer = void 0;
+        var x = void 0;
+        var userSearch = $("#user_search");
+        userSearch.keyup(function () {
+            if (x) {
+                x.abort();
+            } // If there is an existing XHR, abort it.
+            clearTimeout(timer); // Clear the timer so we don't end up with dupes.
+            timer = setTimeout(function () {
+                // assign timer a new timeou
+                x = $.ajax({
+                    url: '/admin/users',
+                    data: '_token=' + $('meta[name="_token"]').attr('content') + '&user_search=' + userSearch.val(),
+                    type: 'get',
+                    dataType: 'json',
+                    success: function success(e) {
+                        $('.tables').html($(data).find('.tables').html());
+                    }
+                }); // run ajax request and store in x variable (so we can cancel)
+            }, 2000); // 2000ms delay, tweak for faster/slower
+        });
+    });
+}
 
 /***/ }),
 /* 167 */

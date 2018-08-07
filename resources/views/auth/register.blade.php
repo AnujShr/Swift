@@ -93,7 +93,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div id="login" class="tab-pane">
+                        <div id="login" class="tab-pane fade in">
                             <div class="col-md-8 animate-box ">
                                 <div id="f-height"></div>
                                 <div id="form-section">

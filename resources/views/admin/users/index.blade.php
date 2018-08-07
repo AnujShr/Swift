@@ -30,8 +30,8 @@
 
                                         <div class="box-tools">
                                             <div class="input-group input-group-sm" style="width: 150px;">
-                                                <input type="text" name="table_search" class="form-control pull-right"
-                                                       placeholder="Search">
+                                                <input type="text" name="user_search" class="form-control pull-right"
+                                                       id="user_search" placeholder="Search">
 
                                                 <div class="input-group-btn">
                                                     <button type="submit" class="btn btn-default"><i
@@ -69,7 +69,6 @@
                                                             @endif
                                                         </td>
                                                         <td>
-
                                                             <li class="dropdown">
                                                                 <a class="list-text dropdown-toggle" href="#" data-toggle="dropdown"
                                                                    role="button" aria-expanded="false">
@@ -80,7 +79,6 @@
                                                                     <li><a href="#">One more separated link</a></li>
                                                                 </ul>
                                                             </li>
-
                                                         </td>
                                                     </tr>
                                                 @endforeach
@@ -97,35 +95,6 @@
                     </div>
                 </div>
             </div>
+        </div>
     </section>
-
-
-    <script>
-        $(document).on('click', '.pagination a', function (event) {
-            $('li').removeClass('active');
-            $(this).parent('li').addClass('active');
-            event.preventDefault();
-            let myurl = $(this).attr('href');
-            let page = $(this).attr('href').split('page=')[1];
-            getData(page);
-            window.history.pushState("", "", myurl);
-        });
-
-
-        function getData(page) {
-            $.ajax({
-                url: '?page=' + page,
-                type: "get",
-                datatype: "html",
-            })
-                .done(function (data) {
-                    $('.tables').html($(data).find('.tables').html());
-                })
-                .fail(function (jqXHR, ajaxOptions, thrownError) {
-                    alert('No response from server');
-                });
-        }
-
-    </script>
-
 @endsection

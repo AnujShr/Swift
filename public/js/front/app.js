@@ -21721,89 +21721,103 @@ if (activeRoute === 'front.contact') {
 /***/ 173:
 /***/ (function(module, exports) {
 
-$(function () {
-    $('#reg-click').click(function (e) {
-        $('#log-click').removeClass('active');
-        $('#reg-click').addClass('active');
-    });
-    $('#log-click').click(function (e) {
-        $('#reg-click').removeClass('active');
-        $('#log-click').addClass('active');
-    });
+if (activeRoute === 'login' || activeRoute === 'register') {
 
-    /*
-    * Register Form Request
-    * */
-    var registerForm = $('#registerForm');
-
-    var errorMessage = '<div class="alert alert-danger" id="message">' + '<strong>Error Encounter!</strong> ' + 'You should check in on some of those fields below.' + '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' + '<span aria-hidden="true">&times;</span>' + '</button>' + '</div>';
-
-    var successMessage = '<div class="alert alert-success" id="message">' + '<strong>Register Sucessfull!</strong> ' + 'Please Check Your Email For the Validation Link.' + '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' + '<span aria-hidden="true">&times;</span>' + '</button>' + '</div>';
-
-    registerForm.submit(function (e) {
-        var width = $('#form-section').width();
-        var data = registerForm.serialize();
-        e.preventDefault();
-        removeErrors(registerForm);
-        $.ajax({
-            url: '/register',
-            type: 'post',
-            data: data,
-            datatye: 'json',
-            success: function success(response) {
-
-                $('#message').html(successMessage);
-                $(':input', registerForm).not(':button, :submit, :reset, :hidden').val('');
-            },
-            error: function error(errors) {
-                $('#message').html(errorMessage);
-                $.each(errors.responseJSON.errors, function (key, value) {
-                    key = $('#' + key);
-                    key.parent('div').addClass('has-error');
-                    key.next('span').html(value[0]);
-                    key.next('span').addClass('help-block');
-                });
-            }
+    $(function () {
+        $('#reg-click').click(function (e) {
+            $('#log-click').removeClass('active');
+            removeErrors(loginForm);
+            loginForm[0].reset();
+            $('#reg-click').addClass('active');
         });
-    });
-
-    /*
-    * Login Form Request
-    * */
-
-    var loginForm = $('#loginForm');
-    loginForm.submit(function (e) {
-        e.preventDefault();
-        removeErrors(loginForm);
-        var loginData = loginForm.serialize();
-        $.ajax({
-            url: '/login',
-            type: 'post',
-            data: loginData,
-            datatye: 'json',
-            success: function success(response) {
-                window.location.href = response['redirect'];
-            },
-            error: function error(errors) {
-                $.each($.parseJSON(errors.responseText), function (key, value) {
-                    key = $('#log-' + key);
-                    key.parent('div').addClass('has-error');
-                    key.next('span').html(value);
-                    key.next('span').addClass('help-block');
-                });
-
-                $('#message').html(errorMessage);
-            }
+        $('#log-click').click(function (e) {
+            $('#reg-click').removeClass('active');
+            removeErrors(registerForm);
+            registerForm[0].reset();
+            $('#log-click').addClass('active');
         });
-    });
 
-    function removeErrors(input) {
-        input.find('div').removeClass('has-error');
-        input.find('span').html('');
-        input.find('span').removeClass('help-block');
-        $('#message').html('');
-    }
-});
+        if (activeRoute === 'login') {
+            $('#reg-click').removeClass('active');
+            $('#register').removeClass('active');
+
+            $('#log-click').addClass('active');
+            $('#login').addClass('active');
+        }
+        /*
+        * Register Form Request
+        * */
+        var registerForm = $('#registerForm');
+
+        var errorMessage = '<div class="alert alert-danger" id="message">' + '<strong>Error Encounter!</strong> ' + 'You should check in on some of those fields below.' + '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' + '<span aria-hidden="true">&times;</span>' + '</button>' + '</div>';
+
+        var successMessage = '<div class="alert alert-success" id="message">' + '<strong>Register Sucessfull!</strong> ' + 'Please Check Your Email For the Validation Link.' + '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' + '<span aria-hidden="true">&times;</span>' + '</button>' + '</div>';
+
+        registerForm.submit(function (e) {
+            var width = $('#form-section').width();
+            var data = registerForm.serialize();
+            e.preventDefault();
+            removeErrors(registerForm);
+            $.ajax({
+                url: '/register',
+                type: 'post',
+                data: data,
+                datatye: 'json',
+                success: function success(response) {
+
+                    $('#message').html(successMessage);
+                    $(':input', registerForm).not(':button, :submit, :reset, :hidden').val('');
+                },
+                error: function error(errors) {
+                    $('#message').html(errorMessage);
+                    $.each(errors.responseJSON.errors, function (key, value) {
+                        key = $('#' + key);
+                        key.parent('div').addClass('has-error');
+                        key.next('span').html(value[0]);
+                        key.next('span').addClass('help-block');
+                    });
+                }
+            });
+        });
+
+        /*
+        * Login Form Request
+        * */
+
+        var loginForm = $('#loginForm');
+        loginForm.submit(function (e) {
+            e.preventDefault();
+            removeErrors(loginForm);
+            var loginData = loginForm.serialize();
+            $.ajax({
+                url: '/login',
+                type: 'post',
+                data: loginData,
+                datatye: 'json',
+                success: function success(response) {
+                    window.location.href = response['redirect'];
+                },
+                error: function error(errors) {
+                    $.each($.parseJSON(errors.responseText), function (key, value) {
+                        key = $('#log-' + key);
+                        key.parent('div').addClass('has-error');
+                        key.next('span').html(value);
+                        key.next('span').addClass('help-block');
+                    });
+
+                    $('#message').html(errorMessage);
+                }
+            });
+        });
+
+        function removeErrors(input) {
+            input.find('div').removeClass('has-error');
+            input.find('span').html('');
+            input.find('span').removeClass('help-block');
+            $('#message').html('');
+        }
+    });
+}
 
 /***/ }),
 
