@@ -19,6 +19,7 @@ class UserController extends Controller
     {
         $users = User::query()->where('role_Id', '0')->paginate(10);
         $user_search = $request->input('user_search');
+        if($user_search)
         $users = User::query()->when($user_search, function ($query) use ($user_search) {
             return $query->where('role_id', 0)->where(function ($query) use ($user_search) {
                 $query->where('name', 'like', '%' . $user_search . '%')

@@ -37,8 +37,8 @@ if (activeRoute === 'admin.users') {
                     data: '_token=' + $('meta[name="_token"]').attr('content') + '&user_search=' + userSearch.val(),
                     type: 'get',
                     dataType: 'json',
-                    success:function (e) {
-                        $('.tables').html($(data).find('.tables').html());
+                    success:function (response) {
+                        $('.tables').html($(response).find('.tables').html());
                     }
                 }); // run ajax request and store in x variable (so we can cancel)
             }, 2000); // 2000ms delay, tweak for faster/slower
