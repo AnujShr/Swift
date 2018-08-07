@@ -33,7 +33,13 @@
                     </li>
                     <li><a href="{{route('front.contact')}}">Contact</a></li>
                     @if(!auth()->check())
-                    <li class="btn-cta"><a href="/register"><span>Sign Up</span></a></li>
+                        <li class="has-dropdown">
+                            <a href="{{route('register')}}">Sign Up</a>
+                            <ul class="dropdown">
+                                <li><a href="{{route('login')}}">Login</a></li>
+                                <li><a href="{{route('register')}}">Register</a></li>
+                            </ul>
+                        </li>
                         @else
                         <li class="has-dropdown">
                             <a href="#">Account</a>
