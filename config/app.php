@@ -162,6 +162,8 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+        Yajra\DataTables\DataTablesServiceProvider::class,
+        Chencha\Share\ShareServiceProvider::class,
 
     ],
 
@@ -214,6 +216,8 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'Image' => 'Intervention\Image\Facades\Image',
+        'DataTables' => Yajra\DataTables\Facades\DataTables::class,
+        'Share' => Chencha\Share\ShareFacade::class,
 
     ],
 

@@ -42,7 +42,7 @@ Route::group(['middleware' => ['web', 'auth', 'admin'], 'prefix' => 'admin', 'na
     Route::post('delete-profile-picture', 'ProfileController@deleteProfilePicture')->name('admin.profile.delete');
 
     Route::get('users', 'UserController@index')->name('admin.users');
-    Route::post('users','UserController@search')->name('admin.users.search');
+    Route::get('user-table','UserController@create')->name('admin.users.view');
 
     Route::get('user/login/{id}', 'UserController@loginAs')->name('admin.loginAsUser');
 

@@ -43,14 +43,23 @@
                                     <!-- /.box-header -->
                                     <div id="load" style="position: relative;">
                                         <div class="box-body table-responsive no-padding tables">
-                                            <table class="table table-hover">
+                                            <table class="table table-bordered" id="table">
+                                                <thead>
                                                 <tr>
-                                                    <th>ID</th>
-                                                    <th>User</th>
+                                                    <th>Id</th>
+                                                    <th>Name</th>
                                                     <th>Email</th>
-                                                    <th>Last Login</th>
-                                                    <th>Status</th>
-                                                    <th>Action</th>
+                                                </tr>
+                                                </thead>
+                                            </table>
+                                            {{--<table class="table table-hover">
+                                                <tr>
+                                                    <th data-id="id">ID</th>
+                                                    <th data-id="user">User</th>
+                                                    <th data-id="email">Email</th>
+                                                    <th data-id="login">Last Login</th>
+                                                    <th data-id="login">Status</th>
+                                                    <th class="table-head">Action</th>
                                                 </tr>
                                                 @foreach($users as $user)
                                                     <tr>
@@ -83,8 +92,8 @@
                                                     </tr>
                                                 @endforeach
 
-                                            </table>
-                                            <div class="center">{{$users->links()}}</div>
+                                            </table>--}}
+                                            {{--<div class="center">{{$users->links()}}</div>--}}
                                         </div>
                                     </div>
                                     <!-- /.box-body -->
@@ -97,4 +106,18 @@
             </div>
         </div>
     </section>
+    <script>
+        $(function() {
+            $('#table').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: '{{ route('admin.users.view') }}',
+                columns: [
+                    { data: 'id', name: 'id' },
+                    { data: 'name', name: 'name' },
+                    { data: 'email', name: 'email' }
+                ]
+            });
+        });
+    </script>
 @endsection

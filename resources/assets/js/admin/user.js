@@ -1,6 +1,7 @@
+/*
 if (activeRoute === 'admin.users') {
     $(function () {
-        /* --AJAX pagination-- */
+        /!* --AJAX pagination-- *!/
         $(document).on('click', '.pagination a', function (event) {
             event.preventDefault();
             let myurl = $(this).attr('href');
@@ -24,7 +25,7 @@ if (activeRoute === 'admin.users') {
                 });
         }
 
-        /* --Search -- */
+        /!* --Search -- *!/
         let timer;
         let x;
         let userSearch = $("#user_search");
@@ -44,7 +45,12 @@ if (activeRoute === 'admin.users') {
             }, 2000); // 2000ms delay, tweak for faster/slower
         });
 
-
+        /!* sorting *!/
+        let table_head = $('.table-head');
+        table_head.click(function (e) {
+            e.preventDefault();
+            table_head.data("id");
+        })
 
     })
-}
+}*/
