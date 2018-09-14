@@ -27,18 +27,6 @@
                                 <div class="box">
                                     <div class="box-header">
                                         <h3 class="box-title">Users</h3>
-
-                                        <div class="box-tools">
-                                            <div class="input-group input-group-sm" style="width: 150px;">
-                                                <input type="text" name="user_search" class="form-control pull-right"
-                                                       id="user_search" placeholder="Search">
-
-                                                <div class="input-group-btn">
-                                                    <button type="submit" class="btn btn-default"><i
-                                                                class="fa fa-search"></i></button>
-                                                </div>
-                                            </div>
-                                        </div>
                                     </div>
                                     <!-- /.box-header -->
                                     <div id="load" style="position: relative;">

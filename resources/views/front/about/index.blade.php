@@ -49,8 +49,26 @@
                         <h3>Jean Smith</h3>
                         <strong class="role">Web Designer</strong>
                         <p>Quos quia provident consequuntur culpa facere ratione maxime commodi voluptates id repellat velit eaque aspernatur expedita. Possimus itaque adipisci.</p>
+                        @php
+
+                            $social_links=Share::load($url, 'About')->services('facebook','twitter','gplus','email');
+                            /*$link=Html::link($url, $property->translate(\App::getLocale())->title);*/
+                              //Mail content and link.
+                            $text='Check it out'.' '.$url;
+                            $email_links=Share::load($text, 'About')->services('email');
+
+                            $social_links=array_merge($social_links, $email_links);
+
+                            $social_icons=array('facebook'=>'facebook','twitter'=>'twitter','gplus'=>'google','email'=>'mail');
+                        @endphp
                         <ul class="fh5co-social-icons">
-                            <li><a href="#"><i class="icon-facebook"></i></a></li>
+                            @foreach($social_links as $key=>$link)
+                                <li><a href="{{ $link}}" target="_blank"><i
+                                                class="icon-{{$social_icons[$key]}}"></i></a></li>
+                            @endforeach
+                        </ul>
+                        <ul class="fh5co-social-icons">
+                            <li><a href="#"><i class="icon-google-plus3"></i></a></li>
                             <li><a href="#"><i class="icon-twitter"></i></a></li>
                             <li><a href="#"><i class="icon-dribbble"></i></a></li>
                             <li><a href="#"><i class="icon-github"></i></a></li>
