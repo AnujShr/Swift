@@ -15,9 +15,6 @@ Route::get('/work',function (){
     return view('front.work.index');
 })->name('work');
 
-Route::group(['middleware' => ['auth']], function () {
-    Route::get('profile', 'ProfileController@index')->name('user.profile');
-});
 Route::group(['middleware' => ['web', 'auth', 'admin'], 'prefix' => 'admin', 'namespace' => 'Admin'], function () {
 
     Route::get('/', function () {
@@ -32,11 +29,16 @@ Route::group(['middleware' => ['web', 'auth', 'admin'], 'prefix' => 'admin', 'na
     Route::post('delete-profile-picture', 'ProfileController@deleteProfilePicture')->name('admin.profile.delete');
 
     Route::get('users', 'UserController@index')->name('admin.users');
-    Route::get('user-table','UserController@create')->name('admin.users.view');
+    Route::get('user-table', 'UserController@create')->name('admin.users.view');
 
     Route::get('user/login/{id}', 'UserController@loginAs')->name('admin.loginAsUser');
 
     Route::get('pages', 'PageController@index')->name('admin.pages');
     Route::get('pages/{slug}', 'PageController@view')->name('admin.pages.view');
     Route::put('pages/{slug}', 'PageController@update')->name('admin.page.update');
+});
+
+//For Vue Cruds alien demo
+Route::get('/asd', function () {
+    return view('indexs');
 });
