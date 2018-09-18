@@ -7,11 +7,11 @@
             <h3>Name: {{ name | properCase }}</h3>
             <select @change="update">
                 <option
-                        v-for="col in [ 'red', 'green' ]"
+                        v-for="col in [ 'green', 'red' ]"
                         :value="col"
                         :key="col"
-                        :selected="col === color ? 'selected' : ''"
-                >{{ col | properCase }}</option>
+                        :selected="col === color ? 'selected' : ''">{{ col | properCase }}  <!-- for filter -->
+                </option>
 
             </select>
             <button @click="del">Delete</button>
@@ -19,27 +19,28 @@
     </div>
 </template>
 <script>
-  export default {
-    computed: {
-      image() {
-        return `/images/${this.color}.png`;
-      }
-    },
-    methods: {
-      update(val) {
-        this.$emit('update', this.id, val.target.selectedOptions[0].value);
-      },
-      del() {
-        this.$emit('delete', this.id);
-      }
-    },
-    props: ['id', 'color', 'name'],
-    filters: {
-      properCase(string) {
-        return string.charAt(0).toUpperCase() + string.slice(1);
-      }
+    export default {
+        computed: {
+            image() {
+                return `/images/${this.color}.png`;
+            }
+        },
+        methods: {
+            update(val) {
+                this.$emit('update', this.id, val.target.selectedOptions[0].value);
+            },
+            del() {
+                this.$emit('delete', this.id);
+            }
+        },
+        props: ['id', 'color', 'name'],
+
+        filters: {
+            properCase(string) {
+                return string.charAt(0).toUpperCase() + string.slice(1);
+            }
+        }
     }
-  }
 </script>
 <style>
     .crud {

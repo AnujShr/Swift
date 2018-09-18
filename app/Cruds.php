@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cruds extends Model
 {
-    protected $guarded = [];
+    protected $fillable = ['name','color'];
 }

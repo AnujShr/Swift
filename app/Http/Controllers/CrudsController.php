@@ -31,7 +31,6 @@ class CrudsController extends Controller
         $crud->name = $faker->lexify('????????');
         $crud->color = $faker->boolean ? 'red' : 'green';
         $crud->save();
-
         return response($crud->jsonSerialize(), Response::HTTP_CREATED);
     }
 
@@ -43,11 +42,10 @@ class CrudsController extends Controller
      * @param  \App\Cruds $cruds
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Cruds $cruds)
     {
-        $cruds = Cruds::findOrFail($id);
         $cruds->color = $request->color;
-        $cruds->save();
+        $cruds->update();
 
         return response(null, Response::HTTP_OK);
     }

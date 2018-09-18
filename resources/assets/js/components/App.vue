@@ -9,7 +9,7 @@
                 :key="crud.id"
                 @update="update"
                 @delete="del"
-        ></crud-component>
+        />
         <div>
             <button @click="create()">Add</button>
         </div>
@@ -29,20 +29,20 @@
         data() {
             return {
                 cruds: [],
-                working: false
+                mute: false
             }
         },
         methods: {
             create() {
                 this.mute = true;
-                window.axios.get('/api/cruds/create').then(({ data }) => {
+                window.axios.get('/api/cruds/create').then(({data}) => {
                     this.cruds.push(new Crud(data));
                     this.mute = false;
                 });
             },
             read() {
                 this.mute = true;
-                window.axios.get('/api/cruds').then(({ data }) => {
+                window.axios.get('/api/cruds').then(({data}) => {
                     data.forEach(crud => {
                         this.cruds.push(new Crud(crud));
                     });
@@ -51,7 +51,7 @@
             },
             update(id, color) {
                 this.mute = true;
-                window.axios.put(`/api/cruds/${id}`, { color }).then(() => {
+                window.axios.put(`/api/cruds/${id}`, {color}).then(() => {
                     this.cruds.find(crud => crud.id === id).color = color;
                     this.mute = false;
                 });

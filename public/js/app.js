@@ -29986,8 +29986,6 @@ window._ = __webpack_require__(12);
 
 try {
   window.$ = window.jQuery = __webpack_require__(2);
-
-  __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"bootstrap-sass\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
 } catch (e) {}
 
 /**
@@ -41427,7 +41425,7 @@ function Crud(_ref) {
     data: function data() {
         return {
             cruds: [],
-            working: false
+            mute: false
         };
     },
 
@@ -41612,25 +41610,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  computed: {
-    image: function image() {
-      return '/images/' + this.color + '.png';
-    }
-  },
-  methods: {
-    update: function update(val) {
-      this.$emit('update', this.id, val.target.selectedOptions[0].value);
+    computed: {
+        image: function image() {
+            return '/images/' + this.color + '.png';
+        }
     },
-    del: function del() {
-      this.$emit('delete', this.id);
+    methods: {
+        update: function update(val) {
+            this.$emit('update', this.id, val.target.selectedOptions[0].value);
+        },
+        del: function del() {
+            this.$emit('delete', this.id);
+        }
+    },
+    props: ['id', 'color', 'name'],
+
+    filters: {
+        properCase: function properCase(string) {
+            return string.charAt(0).toUpperCase() + string.slice(1);
+        }
     }
-  },
-  props: ['id', 'color', 'name'],
-  filters: {
-    properCase: function properCase(string) {
-      return string.charAt(0).toUpperCase() + string.slice(1);
-    }
-  }
 });
 
 /***/ }),
@@ -41652,7 +41651,7 @@ var render = function() {
       _c(
         "select",
         { on: { change: _vm.update } },
-        _vm._l(["red", "green"], function(col) {
+        _vm._l(["green", "red"], function(col) {
           return _c(
             "option",
             {
@@ -41662,7 +41661,7 @@ var render = function() {
                 selected: col === _vm.color ? "selected" : ""
               }
             },
-            [_vm._v(_vm._s(_vm._f("properCase")(col)))]
+            [_vm._v(_vm._s(_vm._f("properCase")(col)) + "  ")]
           )
         })
       ),
