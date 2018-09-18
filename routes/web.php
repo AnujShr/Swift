@@ -39,6 +39,6 @@ Route::group(['middleware' => ['web', 'auth', 'admin'], 'prefix' => 'admin', 'na
 });
 
 //For Vue Cruds alien demo
-Route::get('/asd', function () {
-    return view('indexs');
+Route::get('/vue', function () {
+    return view('vue');
 });
