@@ -31,4 +31,11 @@ class ContactFormRequest extends FormRequest
             'subject'=> 'required|string|max:150',
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'fname.required' => 'The first name field is required',
+            'lname.required' => 'The last name field is required'];
+    }
 }

@@ -13,7 +13,7 @@ if (activeRoute === 'front.contact') {
                 url: '/contact',
                 datatype: 'json',
                 success: function (response) {
-                    location.reload();
+                    window.location.reload();
                 },
                 error: function (errors) {
                     $.each(errors.responseJSON.errors, function (key, value) {

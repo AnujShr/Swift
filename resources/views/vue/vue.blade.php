@@ -31,6 +31,6 @@
 <body>
 <div id="mute"></div>
 <div id="app"></div>
-<script src="js/app.js"></script>
+<script src="js/vue.js"></script>
 </body>
 </html>

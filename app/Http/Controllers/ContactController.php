@@ -13,13 +13,14 @@ class ContactController extends Controller
     {
         return view('front/contact/index');
     }
+
     public function store(ContactFormRequest $request)
     {
         $data = $request->all();
         Contact::create($data);
         app('mailer')->queue(new ContactMail($data));
         $return['success'] = 'true';
-        Session::flash('message','Conact Submitted Successfully');
+        Session::flash('message', 'Message Submitted Successfully');
         return response()->json($return);
     }
 }
